@@ -17,6 +17,6 @@ captures
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 maven.properties
-gpg_secret.gpg
+*.gpg
 .fleet
 *.xcodeproj
