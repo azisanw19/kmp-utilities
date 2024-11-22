@@ -411,5 +411,6 @@ package id.feinn.utility.time
  * @since 1.8
  */
 public object FeinnDateTimeFormatter {
-    public const val ISO_DATE: String = "yyyy-MM-dd"
+    public const val ISO_LOCAL_DATE: String = "yyyy-MM-dd"
+    public const val ISO_LOCAL_DATE_TIME: String = "yyyy-MM-dd'T'HH:mm:ss"
 }

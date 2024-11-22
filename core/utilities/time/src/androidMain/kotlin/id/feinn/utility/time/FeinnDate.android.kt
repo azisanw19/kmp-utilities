@@ -2,6 +2,7 @@ package id.feinn.utility.time
 
 import id.feinn.utility.time.extension.getFormattedDate
 import id.feinn.utility.time.extension.toDate
+import id.feinn.utility.time.extension.toLocalDate
 import java.time.LocalDate
 
 /**
@@ -78,4 +79,15 @@ public actual fun FeinnDate.getFormattedDate(
     locale: FeinnLocale
 ): String {
     return this.localDate.toDate().getFormattedDate(format, locale.locale)
+}
+
+public actual fun FeinnDate.Companion.parse(
+    date: String,
+    format: String,
+    locale: FeinnLocale
+): FeinnDate {
+    val localDate = date.toDate(format, locale.locale).toLocalDate()
+    val feinnDate = FeinnDate()
+    feinnDate.localDate = localDate
+    return feinnDate
 }

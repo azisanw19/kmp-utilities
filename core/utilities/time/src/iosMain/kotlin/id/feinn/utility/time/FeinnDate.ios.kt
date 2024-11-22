@@ -1,5 +1,6 @@
 package id.feinn.utility.time
 
+import id.feinn.utility.time.exception.FeinnDateTimeThrowable
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter
 import platform.Foundation.now
@@ -83,4 +84,19 @@ public actual fun FeinnDate.getFormattedDate(
     nsDateFormatter.dateFormat = format
     nsDateFormatter.locale = locale.locale
     return nsDateFormatter.stringFromDate(this.nsDate)
+}
+
+@Throws(FeinnDateTimeThrowable::class)
+public actual fun FeinnDate.Companion.parse(
+    date: String,
+    format: String,
+    locale: FeinnLocale
+): FeinnDate {
+    val dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = format
+    dateFormatter.locale = locale.locale
+    val nsDate = dateFormatter.dateFromString(date) ?: throw FeinnDateTimeThrowable("Failed to parse date")
+    val feinnDate = FeinnDate()
+    feinnDate.nsDate = nsDate
+    return feinnDate
 }

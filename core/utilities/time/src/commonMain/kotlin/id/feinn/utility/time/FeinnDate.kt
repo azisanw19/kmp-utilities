@@ -53,6 +53,12 @@ public expect fun FeinnDate.Companion.now(): FeinnDate
  * @return a string representation of this date, not null
  */
 public expect fun FeinnDate.getFormattedDate(
-    format: String = FeinnDateTimeFormatter.ISO_DATE,
+    format: String = FeinnDateTimeFormatter.ISO_LOCAL_DATE,
     locale: FeinnLocale = FeinnLocale.getDefault()
 ): String
+
+public expect fun FeinnDate.Companion.parse(
+    date: String,
+    format: String = FeinnDateTimeFormatter.ISO_LOCAL_DATE,
+    locale: FeinnLocale = FeinnLocale.getDefault()
+): FeinnDate

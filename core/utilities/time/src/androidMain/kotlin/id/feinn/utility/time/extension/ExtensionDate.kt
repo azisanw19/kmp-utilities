@@ -1,6 +1,8 @@
 package id.feinn.utility.time.extension
 
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.ZoneId
 import java.util.Date
 import java.util.Locale
 
@@ -17,4 +19,12 @@ internal fun Date.getFormattedDate(
 ) : String {
     val formatter = SimpleDateFormat(format, locale)
     return formatter.format(this)
+}
+
+internal fun Date.toLocalDate(
+    zoneId: ZoneId = ZoneId.systemDefault()
+): LocalDate {
+    return this.toInstant()
+        .atZone(zoneId)
+        .toLocalDate()
 }
