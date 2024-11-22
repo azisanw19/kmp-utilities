@@ -1,0 +1,33 @@
+name: ExampleKMPUtilities
+options:
+  bundleIdPrefix: id.feinn.utilities.example
+  usesTabs: false
+  indentWidth: 4
+  defaultConfig: Debug
+targets:
+  Sample:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    settings:
+      MARKETING_VERSION: 1
+      CURRENT_PROJECT_VERSION: 1
+      GENERATE_INFOPLIST_FILE: YES
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: "Example KMP Utilities"
+        UILaunchScreen:
+          UIColorName: black
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        CADisableMinimumFrameDurationOnPhone: true
+        LSRequiresIPhoneOS: true
+        NSBluetoothAlwaysUsageDescription: This example application for KMP Utilities.
+    sources:
+      - path: iosApp
+        buildPhase: sources
+      - path: Resources
+        buildPhase: resources
+    dependencies:
+      - framework: ../composeApp/build/bin/iosArm64/debugFramework/ComposeApp.framework
