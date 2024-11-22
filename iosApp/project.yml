@@ -5,7 +5,7 @@ options:
   indentWidth: 4
   defaultConfig: Debug
 targets:
-  Sample:
+  ExampleKMPUtilities:
     type: application
     platform: iOS
     deploymentTarget: "15.0"
@@ -24,10 +24,10 @@ targets:
         CADisableMinimumFrameDurationOnPhone: true
         LSRequiresIPhoneOS: true
         NSBluetoothAlwaysUsageDescription: This example application for KMP Utilities.
+    preBuildScripts:
+      - path: preBuild.sh
     sources:
       - path: iosApp
         buildPhase: sources
       - path: Resources
         buildPhase: resources
-    dependencies:
-      - framework: ../composeApp/build/bin/iosArm64/debugFramework/ComposeApp.framework

@@ -12,6 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import examplekmputilities.composeapp.generated.resources.Res
 import examplekmputilities.composeapp.generated.resources.compose_multiplatform
+import id.feinn.utility.time.FeinnDate
+import id.feinn.utility.time.getFormattedDate
+import id.feinn.utility.time.now
+import id.feinn.utility.time.parse
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -22,7 +26,13 @@ fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = { showContent = !showContent }) {
+            Button(onClick = {
+                showContent = !showContent
+                val feinnDate = FeinnDate.now()
+
+                feinnDate.getFormattedDate()
+                FeinnDate.parse("2021-01-01", format = "yyyy-MM-dd")
+            }) {
                 Text("Click me!")
             }
             AnimatedVisibility(showContent) {
