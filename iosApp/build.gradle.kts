@@ -2,7 +2,7 @@ tasks.register<Delete>("clean") {
     group = "Project Setup"
     description = "Delete Xcode project created with xcodegen"
     delete(
-        "$projectDir/SensorTag.xcodeproj/",
+        "$projectDir/ExampleKMPUtilities.xcodeproj/",
         "$projectDir/Info.plist",
     )
 }

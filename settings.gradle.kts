@@ -30,5 +30,6 @@ dependencyResolutionManagement {
 
 include(
     ":composeApp",
-    ":iosApp"
+    ":iosApp",
+    ":core:utilities:time"
 )
