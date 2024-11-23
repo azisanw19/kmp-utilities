@@ -10,13 +10,6 @@ plugins {
     alias(libs.plugins.vanniktechMavenPublish)
 }
 
-val applicationProperties = Properties()
-val applicationPropertiesFile = rootProject.file("maven.properties")
-
-if (applicationPropertiesFile.exists()) {
-    applicationProperties.load(FileInputStream(applicationPropertiesFile))
-}
-
 kotlin {
     explicitApi()
     jvmToolchain(libs.versions.jvm.get().toInt())

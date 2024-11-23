@@ -7,19 +7,101 @@ KMP Library Utilities is a Kotlin Multiplatform library that offers utility func
 simplify cross-platform development. It is designed to boost productivity with ready-to-use 
 features across multiple target platforms.
 
-# Coming Soon ...
+## Time Utilities
 
-# Example
+First add the dependency to your project:
 
-## Android
+```kotlin
+repositories {
+    mavenCentral()
+}
 
-The Example Android App can be built and installed via [Android Studio], or via command line by executing:
+dependencies {
+    implementation("id.feinn.azisanw19:feinn-date-time:$kmp_utils_version")
+}
+```
+
+Make sure to replace $kmp_utils_version with the appropriate version of the library.
+
+### Usage
+
+After adding the dependency, you can start using the Feinn Date Time utilities in your Kotlin 
+Multiplatform project.
+
+#### Getting the Current Date and Time:
+
+You can easily get the current date and time using the FeinnDate class. Here's an example:
+
+```kotlin
+// Get the current date and time
+val currentDate = FeinnDate.now()
+
+// Print the current date and time
+println("Current Date and Time: ${currentDate.toString()}")
+```
+
+#### Formatting Dates:
+
+You can format a FeinnDate instance into a string with a specific format and locale:
+
+```kotlin
+val currentDate = FeinnDate.now()
+
+// Format the date as "yyyy-MM-dd"
+val formattedDate = currentDate.getFormattedDate(
+    format = FeinnDateTimeFormatter.ISO_LOCAL_DATE,
+    locale = FeinnLocale.getDefault()
+)
+
+println("Formatted Date: $formattedDate")
+```
+
+#### Parsing a Date from a String:
+
+You can also parse a date string into a FeinnDate instance:
+
+```kotlin
+// Parse a date string with the format "yyyy-MM-dd"
+val dateString = "2024-11-23"
+val parsedDate = FeinnDate.parse(
+    dateString, 
+    format = FeinnDateTimeFormatter.ISO_LOCAL_DATE, 
+    locale = FeinnLocale.getDefault()
+)
+
+println("Parsed Date: ${parsedDate.toString()}")
+
+```
+
+#### Working with Different Locales
+
+You can work with different locales by using the FeinnLocale class. Here's how to get the default 
+locale of the system and format a date accordingly:
+
+```kotlin
+val feinnLocale = FeinnLocale.getDefault()
+
+// Format the current date using the default locale
+val formattedDate = currentDate.getFormattedDate(format = "dd MMMM yyyy", locale = feinnLocale)
+
+println("Formatted Date with Default Locale: $formattedDate")
+
+```
+
+## Example
+
+Coming soon...
+
+### Android
+
+The Example Android App can be built and installed via [Android Studio], or via command line by 
+executing:
 
 ```shell
 ./gradlew installDebug
 ```
 
-## iOS
+### iOS
 
 The iOS project is generated via:
 
@@ -31,6 +113,24 @@ The iOS project is generated via:
 > `./gradlew openXcode` can be used to both generate the project _and_ open it in Xcode.
 
 In Xcode, configure signing, then run.
+
+## Contributing
+
+Please open an issue first before making a pull request.
+
+## License
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+> http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 [Android Studio]: https://developer.android.com/studio
 

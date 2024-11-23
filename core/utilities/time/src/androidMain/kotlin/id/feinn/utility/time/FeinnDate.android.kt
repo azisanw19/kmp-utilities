@@ -3,47 +3,70 @@ package id.feinn.utility.time
 import id.feinn.utility.time.extension.getFormattedDate
 import id.feinn.utility.time.extension.toDate
 import id.feinn.utility.time.extension.toLocalDate
+import java.text.ParseException
 import java.time.LocalDate
+import java.text.SimpleDateFormat
+import java.util.Date
 
 /**
- * A date without a time-zone in the ISO-8601 calendar system,
- * such as {@code 2007-12-03}.
- * <p>
- * {@code LocalDate} is an immutable date-time object that represents a date,
- * often viewed as year-month-day. Other date fields, such as day-of-year,
- * day-of-week and week-of-year, can also be accessed.
- * For example, the value "2nd October 2007" can be stored in a {@code LocalDate}.
- * <p>
- * This class does not store or represent a time or time-zone.
- * Instead, it is a description of the date, as used for birthdays.
- * It cannot represent an instant on the time-line without additional information
- * such as an offset or time-zone.
- * <p>
- * The ISO-8601 calendar system is the modern civil calendar system used today
- * in most of the world. It is equivalent to the proleptic Gregorian calendar
- * system, in which today's rules for leap years are applied for all time.
- * For most applications written today, the ISO-8601 rules are entirely suitable.
- * However, any application that makes use of historical dates, and requires them
- * to be accurate will find the ISO-8601 approach unsuitable.
+ * A wrapper class for [LocalDate] that provides additional functionality and customization.
  *
- * @implSpec
- * This class is immutable and thread-safe.
+ * The `FeinnDate` class encapsulates a [LocalDate] instance and overrides common methods such as
+ * [toString], [hashCode], and [equals] to delegate behavior to the underlying [LocalDate].
  *
- * @since 1.8
+ * @property localDate LocalDate - The encapsulated [LocalDate] instance. By default, it is initialized
+ *                                to the current date ([LocalDate.now()]).
+ *
+ * Example usage:
+ * ```
+ * val feinnDate = FeinnDate()
+ * println(feinnDate) // Output: "2024-11-23" (or the current date)
+ *
+ * feinnDate.localDate = LocalDate.of(2025, 1, 1)
+ * println(feinnDate) // Output: "2025-01-01"
+ *
+ * val anotherDate = FeinnDate().apply {
+ *     localDate = LocalDate.of(2025, 1, 1)
+ * }
+ * println(feinnDate == anotherDate) // Output: true
+ * ```
  */
 public actual class FeinnDate {
 
+    /**
+     * Companion object to hold any static properties or methods for [FeinnDate].
+     */
     public actual companion object {}
-    public lateinit var localDate: LocalDate
 
+    /**
+     * The encapsulated [LocalDate] instance, defaulting to the current date.
+     */
+    public var localDate: LocalDate = LocalDate.now()
+
+    /**
+     * Returns the string representation of the encapsulated [LocalDate].
+     *
+     * @return String - The string representation of [localDate].
+     */
     override fun toString(): String {
         return localDate.toString()
     }
 
+    /**
+     * Returns the hash code of the encapsulated [LocalDate].
+     *
+     * @return Int - The hash code of [localDate].
+     */
     override fun hashCode(): Int {
         return localDate.hashCode()
     }
 
+    /**
+     * Checks equality between this [FeinnDate] and another object.
+     *
+     * @param other Any? - The object to compare with.
+     * @return Boolean - `true` if the other object is a [FeinnDate] with an equal [localDate], otherwise `false`.
+     */
     override fun equals(other: Any?): Boolean {
         return localDate == (other as? FeinnDate)?.localDate
     }
@@ -51,15 +74,19 @@ public actual class FeinnDate {
 }
 
 /**
- * Obtains the current date from the system clock in the default time-zone.
- * <p>
- * This will query the {@link Clock#systemDefaultZone() system clock} in the default
- * time-zone to obtain the current date.
- * <p>
- * Using this method will prevent the ability to use an alternate clock for testing
- * because the clock is hard-coded.
+ * Creates a new instance of [FeinnDate] initialized with the current date.
  *
- * @return the current date using the system clock and default time-zone, not null
+ * @receiver FeinnDate.Companion - The companion object of [FeinnDate].
+ * @return FeinnDate - A new [FeinnDate] instance with [FeinnDate.localDate] set to the current date ([LocalDate.now()]).
+ *
+ * Example usage:
+ * ```
+ * val today = FeinnDate.now()
+ * println(today) // Output: "2024-11-23" (or the current date)
+ * ```
+ *
+ * Note: This method provides a convenient way to create a `FeinnDate` object with the current date
+ * without needing to manually set the [FeinnDate.localDate] property.
  */
 public actual fun FeinnDate.Companion.now(): FeinnDate {
     val feinnDate = FeinnDate()
@@ -68,11 +95,26 @@ public actual fun FeinnDate.Companion.now(): FeinnDate {
 }
 
 /**
- * Outputs this date as a {@code String}, such as {@code 2007-12-03}.
- * <p>
- * The output will be in the ISO-8601 format {@code uuuu-MM-dd}.
+ * Formats the [FeinnDate.localDate] of this [FeinnDate] into a string representation based on the specified format and locale.
  *
- * @return a string representation of this date, not null
+ * @param format String - The desired format for the date, following the [SimpleDateFormat] pattern.
+ *                        Examples: "yyyy-MM-dd", "dd MMMM yyyy", "hh:mm a".
+ * @param locale FeinnLocale - The locale to be used for formatting, which affects elements like month and day names.
+ * @return String - The formatted date as a string.
+ *
+ * This method internally converts the [FeinnDate.localDate] to a legacy [Date] object and then formats it
+ * using the provided format and locale.
+ *
+ * Example usage:
+ * ```
+ * val feinnDate = FeinnDate().apply {
+ *     localDate = LocalDate.of(2024, 11, 23)
+ * }
+ * val formattedDate = feinnDate.getFormattedDate("dd MMMM yyyy", FeinnLocale(Locale.ENGLISH))
+ * println(formattedDate) // Output: "23 November 2024"
+ * ```
+ *
+ * Note: Ensure that the format string is valid and the locale is correctly initialized to avoid errors.
  */
 public actual fun FeinnDate.getFormattedDate(
     format: String,
@@ -81,6 +123,31 @@ public actual fun FeinnDate.getFormattedDate(
     return this.localDate.toDate().getFormattedDate(format, locale.locale)
 }
 
+/**
+ * Parses a date string into a [FeinnDate] object based on the specified format and locale.
+ *
+ * @receiver FeinnDate.Companion - The companion object of [FeinnDate].
+ * @param date String - The string representation of the date to be parsed.
+ *                      Example: "23-11-2024", "November 23, 2024".
+ * @param format String - The expected format of the date string, following the [SimpleDateFormat] pattern.
+ *                        Examples: "dd-MM-yyyy", "MMMM dd, yyyy".
+ * @param locale FeinnLocale - The locale to be used for parsing, which affects elements like month and day names.
+ * @return FeinnDate - A [FeinnDate] object initialized with the parsed date.
+ *
+ * This method converts the input string into a [LocalDate] using the given format and locale, then creates
+ * a new [FeinnDate] object with the parsed date.
+ *
+ * Example usage:
+ * ```
+ * val dateString = "23-11-2024"
+ * val feinnDate = FeinnDate.parse(dateString, "dd-MM-yyyy", FeinnLocale(Locale.ENGLISH))
+ * println(feinnDate) // Output: "2024-11-23"
+ * ```
+ *
+ * @throws ParseException if the date string cannot be parsed into a valid date using the provided format.
+ *
+ * Note: Ensure the input date string matches the specified format exactly to avoid errors during parsing.
+ */
 public actual fun FeinnDate.Companion.parse(
     date: String,
     format: String,
