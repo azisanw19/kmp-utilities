@@ -7,11 +7,23 @@ import java.util.Date
 import java.util.Locale
 
 /**
- * Returns the formatted date string based on the specified format and locale.
+ * Formats a [Date] object into a string representation based on the specified format and locale.
  *
- * @param format The format string to use. Default is "dd MMMM yyyy".
- * @param locale The locale to use for formatting. Default is Locale("id", "ID").
- * @return The formatted date string.
+ * @receiver Date - The date instance to be formatted.
+ * @param format String - The desired format for the date, following the [SimpleDateFormat] pattern.
+ *                        Examples: "yyyy-MM-dd", "dd MMMM yyyy", "hh:mm a".
+ * @param locale Locale - The locale to be used for formatting the date, which affects elements
+ *                        like month and day names.
+ * @return String - The formatted date as a string.
+ *
+ * @throws IllegalArgumentException if the format string is invalid or not recognized by [SimpleDateFormat].
+ *
+ * Example usage:
+ * ```
+ * val date = Date()
+ * val formattedDate = date.getFormattedDate("dd MMM yyyy", Locale.ENGLISH)
+ * println(formattedDate) // e.g., "23 Nov 2024"
+ * ```
  */
 internal fun Date.getFormattedDate(
     format: String,
@@ -21,6 +33,28 @@ internal fun Date.getFormattedDate(
     return formatter.format(this)
 }
 
+/**
+ * Converts a [Date] object to a [LocalDate] using the specified [ZoneId].
+ *
+ * @receiver Date - The date instance to be converted.
+ * @param zoneId ZoneId - The time zone to be used for the conversion. Defaults to the system's default time zone
+ *                        ([ZoneId.systemDefault()]) if not specified.
+ * @return LocalDate - The [LocalDate] representation of the given [Date].
+ *
+ * This method is useful for converting legacy [Date] objects into the modern [java.time.LocalDate]
+ * format introduced in Java 8.
+ *
+ * Example usage:
+ * ```
+ * val date = Date()
+ * val localDate = date.toLocalDate()
+ * println(localDate) // e.g., "2024-11-23"
+ *
+ * val specificZone = ZoneId.of("America/New_York")
+ * val localDateInZone = date.toLocalDate(specificZone)
+ * println(localDateInZone) // e.g., "2024-11-22"
+ * ```
+ */
 internal fun Date.toLocalDate(
     zoneId: ZoneId = ZoneId.systemDefault()
 ): LocalDate {

@@ -4,6 +4,32 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+/**
+ * Parses a [String] into a [Date] object based on the specified format and locale.
+ *
+ * @receiver String - The string representation of the date to be parsed.
+ * @param format String - The expected format of the date string, following the [SimpleDateFormat] pattern.
+ *                        Examples: "yyyy-MM-dd", "dd/MM/yyyy", "MMM dd, yyyy".
+ * @param locale Locale - The locale to be used for parsing, which affects elements like month and day names.
+ *                        Defaults to the system's default locale ([Locale.getDefault()]).
+ * @return Date - The [Date] object representing the parsed date.
+ *
+ * @throws ParseException if the string cannot be parsed into a date with the given format.
+ * @throws NullPointerException if the parsing result is null (use with caution as `!!` is used).
+ *
+ * Example usage:
+ * ```
+ * val dateString = "23-11-2024"
+ * val date = dateString.toDate("dd-MM-yyyy")
+ * println(date) // e.g., "Sat Nov 23 00:00:00 UTC 2024"
+ *
+ * val dateWithLocale = "23 November 2024"
+ * val dateWithLocaleParsed = dateWithLocale.toDate("dd MMMM yyyy", Locale.ENGLISH)
+ * println(dateWithLocaleParsed) // e.g., "Sat Nov 23 00:00:00 UTC 2024"
+ * ```
+ *
+ * Note: Ensure the input string matches the format exactly; otherwise, a [ParseException] will be thrown.
+ */
 internal fun String.toDate(
     format: String,
     locale: Locale = Locale.getDefault()
