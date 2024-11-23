@@ -28,7 +28,7 @@ public actual class FeinnDate {
     /**
      * The actual [NSDate] object that holds the date value.
      */
-    public lateinit var nsDate: NSDate
+    public var nsDate: NSDate = NSDate.now()
 
     /**
      * Returns a string representation of the current [FeinnDate] instance.
