@@ -4,6 +4,7 @@ import id.feinn.utility.time.exception.FeinnDateTimeThrowable
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter
 import platform.Foundation.now
+import platform.Foundation.timeIntervalSince1970
 
 /**
  * The actual implementation of [FeinnDate] for iOS, representing a date using [NSDate].
@@ -12,34 +13,44 @@ import platform.Foundation.now
  * to interact with dates, including formatting, parsing, and getting the current date.
  * The `nsDate` property stores the actual iOS date instance.
  *
- * Example usage:
- * ```
+ * ### Example usage:
+ * ```kotlin
  * val currentDate = FeinnDate.now()
  * println(currentDate) // Output: Current NSDate representation
  * ```
  */
-public actual class FeinnDate {
+public actual class FeinnDate() {
 
     /**
      * The companion object for [FeinnDate], which provides static methods related to the class.
      */
     public actual companion object {}
 
+    public constructor(nsDate: NSDate) : this() {
+        this.nsDate = nsDate
+    }
+
     /**
      * The actual [NSDate] object that holds the date value.
+     *
+     * This property encapsulates the native iOS [NSDate] instance that represents the date and time.
+     * It is initialized to the current date and time by default.
      */
     public var nsDate: NSDate = NSDate.now()
 
     /**
      * Returns a string representation of the current [FeinnDate] instance.
      *
-     * This method returns the string representation of the underlying [NSDate] object. It overrides the
-     * default `toString()` method to provide a meaningful string output for the [FeinnDate] object.
+     * This method overrides the default `toString()` method to provide a meaningful string output for the [FeinnDate] object.
+     * The string is formatted using the ISO_LOCAL_DATE format (yyyy-MM-dd) by default.
      *
-     * @return String - The string representation of the [nsDate] instance.
+     * @return String - The string representation of the [nsDate] instance in the format "yyyy-MM-dd".
      */
     override fun toString(): String {
-        return nsDate.toString()
+        val nsDateFormatter = NSDateFormatter()
+        nsDateFormatter.dateFormat = FeinnDateTimeFormatter.ISO_LOCAL_DATE
+        nsDateFormatter.locale = FeinnLocale.getDefault().locale
+        return nsDateFormatter.stringFromDate(nsDate)
     }
 
     /**
@@ -47,7 +58,7 @@ public actual class FeinnDate {
      *
      * This method overrides the default `hashCode()` method to return the hash code of the underlying
      * [NSDate] object, ensuring correct behavior when [FeinnDate] instances are used in collections like
-     * hash-based containers.
+     * hash-based containers (e.g., HashSet, HashMap).
      *
      * @return Int - The hash code of the [nsDate] instance.
      */
@@ -59,7 +70,8 @@ public actual class FeinnDate {
      * Compares this [FeinnDate] instance with another object for equality.
      *
      * This method overrides the default `equals()` method to check if two [FeinnDate] instances are equal
-     * by comparing their underlying [NSDate] objects.
+     * by comparing their underlying [NSDate] objects. It ensures that [FeinnDate] instances are considered
+     * equal if they represent the same date and time.
      *
      * @param other Any? - The object to compare with.
      * @return Boolean - True if both objects are [FeinnDate] instances and have the same [nsDate], false otherwise.
@@ -84,10 +96,7 @@ public actual class FeinnDate {
  * ```
  */
 public actual fun FeinnDate.Companion.now(): FeinnDate {
-    val feinnDate = FeinnDate()
-    val nsDate = NSDate.now()
-    feinnDate.nsDate = nsDate
-    return feinnDate
+    return FeinnDate()
 }
 
 /**
@@ -147,7 +156,21 @@ public actual fun FeinnDate.Companion.parse(
     dateFormatter.dateFormat = format
     dateFormatter.locale = locale.locale
     val nsDate = dateFormatter.dateFromString(date) ?: throw FeinnDateTimeThrowable("Failed to parse date")
-    val feinnDate = FeinnDate()
-    feinnDate.nsDate = nsDate
-    return feinnDate
+    return FeinnDate(nsDate)
 }
+
+/**
+ * Gets the number of milliseconds since the Unix epoch (January 1, 1970) for the current [FeinnDate] instance.
+ *
+ * This property retrieves the time interval (in seconds) since January 1, 1970, from the underlying [NSDate] object,
+ * then converts it to milliseconds by multiplying the result by 1000.
+ *
+ * This can be useful in scenarios where a precise timestamp (in milliseconds) is required, such as:
+ * - Working with time-based comparisons.
+ * - Sending timestamps in APIs that expect milliseconds as the unit.
+ * - Handling precise time calculations in applications.
+ *
+ * @return Long - The number of milliseconds since the Unix epoch (January 1, 1970).
+ */
+public actual val FeinnDate.milliseconds: Long
+    get() = nsDate.timeIntervalSince1970.toLong() * 1000L

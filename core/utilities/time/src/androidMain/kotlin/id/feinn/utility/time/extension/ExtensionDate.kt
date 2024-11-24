@@ -2,6 +2,7 @@ package id.feinn.utility.time.extension
 
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.Date
 import java.util.Locale
@@ -61,4 +62,27 @@ internal fun Date.toLocalDate(
     return this.toInstant()
         .atZone(zoneId)
         .toLocalDate()
+}
+
+/**
+ * Converts a [Date] instance to a [LocalDateTime] object, adjusted to the specified [ZoneId].
+ *
+ * This function uses the system's default time zone ([ZoneId.systemDefault]) unless another
+ * [ZoneId] is provided. The conversion is achieved by transforming the [Date] into an
+ * [Instant], applying the zone offset, and then extracting the local date-time.
+ *
+ * @param zoneId The time zone to apply during the conversion. Defaults to the system's default zone.
+ * @return The equivalent [LocalDateTime] representation of this [Date] in the specified time zone.
+ *
+ * @sample
+ * val date = Date()
+ * val localDateTime = date.toLocalDateTime()
+ * println("LocalDateTime: $localDateTime")
+ */
+internal fun Date.toLocalDateTime(
+    zoneId: ZoneId = ZoneId.systemDefault()
+): LocalDateTime {
+    return this.toInstant()
+        .atZone(zoneId)
+        .toLocalDateTime()
 }

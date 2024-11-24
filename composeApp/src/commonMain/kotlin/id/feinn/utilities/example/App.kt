@@ -13,12 +13,14 @@ import androidx.compose.ui.Modifier
 import examplekmputilities.composeapp.generated.resources.Res
 import examplekmputilities.composeapp.generated.resources.compose_multiplatform
 import id.feinn.utility.time.FeinnDate
+import id.feinn.utility.time.FeinnDateTime
 import id.feinn.utility.time.getFormattedDate
+import id.feinn.utility.time.getFormattedDateTime
 import id.feinn.utility.time.now
 import id.feinn.utility.time.parse
+import id.feinn.utility.time.toFeinnDate
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
 
 @Composable
 @Preview
@@ -32,6 +34,23 @@ fun App() {
 
                 feinnDate.getFormattedDate()
                 FeinnDate.parse("2021-01-01", format = "yyyy-MM-dd")
+
+                val formattedDate = feinnDate.getFormattedDate("dd-MM-yyyy")
+
+                println(formattedDate)
+
+                val feinnDateTime = FeinnDateTime.now()
+                val formattedDateTime = feinnDateTime.getFormattedDateTime("yyyy-MM-dd HH:mm:ss")
+
+                println(formattedDateTime)
+
+                val parsedDateTime = FeinnDateTime.parse("2021-01-01T12:00:00", "yyyy-MM-dd'T'HH:mm:ss")
+
+                println(parsedDateTime)
+
+                val feinnDate2 = feinnDateTime.toFeinnDate()
+
+                println(feinnDate2)
             }) {
                 Text("Click me!")
             }

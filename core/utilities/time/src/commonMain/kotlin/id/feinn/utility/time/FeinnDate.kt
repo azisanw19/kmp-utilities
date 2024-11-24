@@ -112,3 +112,27 @@ public expect fun FeinnDate.Companion.parse(
     format: String = FeinnDateTimeFormatter.ISO_LOCAL_DATE,
     locale: FeinnLocale = FeinnLocale.getDefault()
 ): FeinnDate
+
+/**
+ * Provides the number of milliseconds since the Unix epoch (January 1, 1970, 00:00:00 UTC)
+ * for the date represented by this [FeinnDate].
+ *
+ * This property calculates the epoch time in milliseconds for the encapsulated date, which can be
+ * useful for time-based computations, comparisons, or conversions.
+ *
+ * @return Long - The epoch time in milliseconds for this [FeinnDate].
+ *
+ * ### Example Usage:
+ * ```kotlin
+ * val feinnDate = FeinnDate()
+ * println(feinnDate.milliseconds) // Output: 1732406400000 (example timestamp)
+ *
+ * val specificDate = FeinnDate(LocalDate.of(2025, 1, 1))
+ * println(specificDate.milliseconds) // Output: 1735680000000
+ * ```
+ *
+ * ### Note:
+ * - The value is timezone-independent because it assumes the start of the day in the local timezone.
+ * - Ensure consistent timezone handling when using this property across different platforms.
+ */
+public expect val FeinnDate.milliseconds: Long

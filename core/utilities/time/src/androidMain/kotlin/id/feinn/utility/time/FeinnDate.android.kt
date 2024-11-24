@@ -11,42 +11,60 @@ import java.util.Date
 /**
  * A wrapper class for [LocalDate] that provides additional functionality and customization.
  *
- * The `FeinnDate` class encapsulates a [LocalDate] instance and overrides common methods such as
- * [toString], [hashCode], and [equals] to delegate behavior to the underlying [LocalDate].
+ * The `FeinnDate` class encapsulates a [LocalDate] instance and provides overrides for common methods
+ * such as [toString], [hashCode], and [equals], delegating their behavior to the underlying [LocalDate].
+ * This class is designed for scenarios requiring extended features beyond the default [LocalDate] functionality.
  *
- * @property localDate LocalDate - The encapsulated [LocalDate] instance. By default, it is initialized
- *                                to the current date ([LocalDate.now()]).
+ * @constructor Creates a new instance of [FeinnDate]. By default, the [localDate] property is initialized
+ *              to the current date ([LocalDate.now()]). Alternatively, a specific [LocalDate] can be passed
+ *              via the secondary constructor.
  *
- * Example usage:
- * ```
+ * @property localDate LocalDate - The encapsulated [LocalDate] instance. Default value is the current date.
+ *
+ * ### Example Usage:
+ * ```kotlin
+ * // Create a new FeinnDate with the current date
  * val feinnDate = FeinnDate()
  * println(feinnDate) // Output: "2024-11-23" (or the current date)
  *
+ * // Update the localDate property
  * feinnDate.localDate = LocalDate.of(2025, 1, 1)
  * println(feinnDate) // Output: "2025-01-01"
  *
- * val anotherDate = FeinnDate().apply {
- *     localDate = LocalDate.of(2025, 1, 1)
- * }
+ * // Create another FeinnDate instance and compare
+ * val anotherDate = FeinnDate(LocalDate.of(2025, 1, 1))
  * println(feinnDate == anotherDate) // Output: true
  * ```
  */
-public actual class FeinnDate {
+public actual class FeinnDate() {
 
     /**
      * Companion object to hold any static properties or methods for [FeinnDate].
+     *
+     * This object can be used to provide factory methods or constants for the [FeinnDate] class.
      */
     public actual companion object {}
 
     /**
+     * Secondary constructor to initialize [FeinnDate] with a specific [LocalDate].
+     *
+     * @param localDate The [LocalDate] instance to encapsulate.
+     */
+    public constructor(localDate: LocalDate) : this() {
+        this.localDate = localDate
+    }
+
+    /**
      * The encapsulated [LocalDate] instance, defaulting to the current date.
+     *
+     * This property can be modified after the instance is created to update the date.
      */
     public var localDate: LocalDate = LocalDate.now()
 
     /**
      * Returns the string representation of the encapsulated [LocalDate].
      *
-     * @return String - The string representation of [localDate].
+     * @return String - The string representation of [localDate] in ISO-8601 format (e.g., "2024-11-23").
      */
     override fun toString(): String {
         return localDate.toString()
@@ -63,6 +81,8 @@ public actual class FeinnDate {
 
     /**
      * Checks equality between this [FeinnDate] and another object.
+     *
+     * Two [FeinnDate] instances are considered equal if their [localDate] properties are equal.
      *
      * @param other Any? - The object to compare with.
      * @return Boolean - `true` if the other object is a [FeinnDate] with an equal [localDate], otherwise `false`.
@@ -89,9 +109,7 @@ public actual class FeinnDate {
  * without needing to manually set the [FeinnDate.localDate] property.
  */
 public actual fun FeinnDate.Companion.now(): FeinnDate {
-    val feinnDate = FeinnDate()
-    feinnDate.localDate = LocalDate.now()
-    return feinnDate
+    return FeinnDate()
 }
 
 /**
@@ -154,7 +172,8 @@ public actual fun FeinnDate.Companion.parse(
     locale: FeinnLocale
 ): FeinnDate {
     val localDate = date.toDate(format, locale.locale).toLocalDate()
-    val feinnDate = FeinnDate()
-    feinnDate.localDate = localDate
-    return feinnDate
+    return FeinnDate(localDate)
 }
+
+public actual val FeinnDate.milliseconds: Long
+    get() = this.localDate.toDate().time
