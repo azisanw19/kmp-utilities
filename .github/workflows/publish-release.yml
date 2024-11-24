@@ -24,7 +24,7 @@ jobs:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
         run: |
           brew install gpg
-          echo "GPG_PRIVATE_KEY" | gpg --dearmor > ${HOME}/keyring.gpg
+          echo "${GPG_PRIVATE_KEY}" | gpg --dearmor > ${HOME}/keyring.gpg
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
@@ -36,11 +36,6 @@ jobs:
           SIGNING_KEY_ID: ${{ secrets.GPG_KEY_ID }}
           SIGNING_KEY_PASSWORD: ${{ secrets.GPG_PASSWORD }}
         run: |
-          echo "kotlin.code.style=official" >> gradle.properties
-          echo "kotlin.daemon.jvmargs=-Xmx2048M" >> gradle.properties
-          echo "org.gradle.jvmargs=-Xmx2048M -Dfile.encoding=UTF-8 >> gradle.properties
-          echo "android.nonTransitiveRClass=true" >> gradle.properties
-          echo "android.useAndroidX=true" >> gradle.properties
           echo "mavenCentralUsername=${MAVEN_CENTRAL_USERNAME}" >> gradle.properties
           echo "mavenCentralPassword=${MAVEN_CENTRAL_PASSWORD}" >> gradle.properties
           echo "signing.keyId=${SIGNING_KEY_ID}" >> gradle.properties
