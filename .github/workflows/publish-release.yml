@@ -1,0 +1,57 @@
+name: Upload library to Maven Central
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  deploy:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Install GPG
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: |
+          brew install gpg
+          echo "GPG_PRIVATE_KEY" | gpg --dearmor > ${HOME}/keyring.gpg
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Add Gradle Properties
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          SIGNING_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.GPG_PASSWORD }}
+        run: |
+          echo "kotlin.code.style=official" >> gradle.properties
+          echo "kotlin.daemon.jvmargs=-Xmx2048M" >> gradle.properties
+          echo "org.gradle.jvmargs=-Xmx2048M -Dfile.encoding=UTF-8 >> gradle.properties
+          echo "android.nonTransitiveRClass=true" >> gradle.properties
+          echo "android.useAndroidX=true" >> gradle.properties
+          echo "mavenCentralUsername=${MAVEN_CENTRAL_USERNAME}" >> gradle.properties
+          echo "mavenCentralPassword=${MAVEN_CENTRAL_PASSWORD}" >> gradle.properties
+          echo "signing.keyId=${SIGNING_KEY_ID}" >> gradle.properties
+          echo "signing.password=${SIGNING_KEY_PASSWORD}" >> gradle.properties
+          echo "signing.secretKeyRingFile=${HOME}/keyring.gpg" >> gradle.properties
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Upload to Maven Central
+        run: |
+          ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
