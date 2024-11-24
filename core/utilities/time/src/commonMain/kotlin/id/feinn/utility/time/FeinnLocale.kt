@@ -44,3 +44,29 @@ public expect class FeinnLocale {
  * - The actual implementation of retrieving the default locale will depend on the platform.
  */
 public expect fun FeinnLocale.Companion.getDefault(): FeinnLocale
+
+/**
+ * Retrieves a [FeinnLocale] instance for a specific region identified by the given region ID.
+ *
+ * This function constructs a [FeinnLocale] object by setting the region using the provided
+ * region ID. It can be useful for obtaining locale-specific information based on geographical regions.
+ *
+ * @param regionId String - The region ID (e.g., "US", "IN", "FR") to create the locale for.
+ * @return FeinnLocale - A [FeinnLocale] instance configured with the specified region.
+ *
+ * ### Example Usage:
+ * ```kotlin
+ * val usLocale = FeinnLocale.getFromRegionId("US")
+ * println(usLocale) // Output: FeinnLocale representing "en_US"
+ *
+ * val inLocale = FeinnLocale.getFromRegionId("IN")
+ * println(inLocale) // Output: FeinnLocale representing "en_IN"
+ * ```
+ *
+ * ### Note:
+ * - The region ID must be a valid ISO 3166-1 alpha-2 country code (e.g., "US", "IN").
+ * - The locale created may vary based on the system's default locale settings or the region provided.
+ */
+public expect fun FeinnLocale.Companion.getFromRegionId(
+    regionId: String
+): FeinnLocale
