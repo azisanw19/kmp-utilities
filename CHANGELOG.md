@@ -1,3 +1,25 @@
+# 1.0.0-alpha02
+
+## Feinn Date Time 1.0.0-alpha02
+
+### 🌟 New Features
+
+- **Improved Date Parsing**: Enhanced parsing functions to handle a broader range of date formats with better error handling 🛠️.
+- **Custom Date Format Support**: Added support for custom date formats to `FeinnDateTime.getFormattedDateTime()` for more flexible date-time formatting 🔧.
+- **Locale Support for Regions**: `FeinnLocale` now supports Regions information, allowing formatting and parsing across multiple regions 🌍🕰️.
+- **Time Zone Conversion**: Introduced a method to convert `FeinnDateTime` to different regions ⏰🌎.
+
+### 🐞 Bug Fixes
+
+- **Date Formatting Inconsistencies**: Fixed an issue where certain date formats were not rendering consistently on iOS 🍏 and Android 📱.
+- **Crash Fix for Parsing Invalid Dates**: Fixed a crash that occurred when parsing invalid date strings. Now, a `FeinnDateTimeThrowable` is thrown with a clear error message 🛑.
+
+### ⚠️ Known Issues
+
+- Some complex time zone conversions may still exhibit slight inconsistencies between platforms 🔧.
+- The `FeinnDate` and `FeinnDateTime` instances may behave differently when used in non-UTC time zones ⏳.
+- Additional testing needed for edge cases with parsing time zone-specific date strings 🧪.
+
 # 1.0.0-alpha01
 
 ## Feinn Date Time 1.0.0-alpha01

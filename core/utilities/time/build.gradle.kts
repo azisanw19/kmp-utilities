@@ -33,9 +33,9 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
-        
+
         commonMain.dependencies {
             implementation(compose.runtime)
         }
@@ -50,7 +50,7 @@ android {
 }
 
 val mavenProperties = Properties()
-val mavenPropertiesFile = rootProject.file("maven.properties")
+val mavenPropertiesFile = rootProject.file("maven.info.properties")
 
 if (mavenPropertiesFile.exists()) {
     mavenProperties.load(FileInputStream(mavenPropertiesFile))
@@ -58,9 +58,9 @@ if (mavenPropertiesFile.exists()) {
 
 mavenPublishing {
     coordinates(
-        groupId = "id.feinn.azisanw19",
-        artifactId = "feinn-date-time",
-        version = "1.0.0-alpha01"
+        groupId = mavenProperties.getProperty("groupId"),
+        artifactId = mavenProperties.getProperty("artifactId"),
+        version = mavenProperties.getProperty("version")
     )
 
     // Configure POM metadata for the published artifact
@@ -80,9 +80,10 @@ mavenPublishing {
         // Specify developers information
         developers {
             developer {
-                id.set("azisanw19")
-                name.set("Aziz Anwar")
-                email.set("azisanw19@gmail.com")
+                id.set(mavenProperties.getProperty("developerId"))
+                name.set(mavenProperties.getProperty("developerName"))
+                email.set(mavenProperties.getProperty("developerEmail"))
+
             }
         }
 
