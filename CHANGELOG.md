@@ -1,3 +1,17 @@
+# 1.0.0-alpha03
+
+## Feinn Context 1.0.0-alpha03
+
+### 🌟 New Features
+
+- **Platform Context**: Enhanced context functionality to handle various utilities that require context 🔧.
+
+## Feinn Context 1.0.0-alpha03
+
+### 🌟 New Features
+
+- **Launch Open Uri**: Launch functionality to handle web open uri and local storage uri 🛠️.️
+
 # 1.0.0-alpha02
 
 ## Feinn Date Time 1.0.0-alpha02
