@@ -186,6 +186,34 @@ val formattedDateTime = currentDateTime.getFormattedDateTime(
 println("Formatted Date and Time with Default Locale: $formattedDateTime")
 ```
 
+## Document uri Launcher Utilities
+
+First add the dependency to your project:
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("id.feinn.azisanw19:feinn-platform-context:$kmp_utils_version")
+    implementation("id.feinn.azisanw19:feinn-launcher:$kmp_utils_version")
+}
+```
+
+Make sure to replace $kmp_utils_version with the appropriate version of the library.
+
+### Usage
+
+```kotlin
+
+val context = FeinnLocalPlatformContext.current 
+val launcher = rememberFeinnLauncer(context)
+
+launcher.launch("https://www.google.com")
+
+```
+
 ## Example
 
 Coming soon...
