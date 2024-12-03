@@ -44,6 +44,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(projects.core.utilities.time)
+            implementation(projects.core.utilities.context)
+            implementation(projects.core.utilities.launcher)
         }
     }
 }

@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import examplekmputilities.composeapp.generated.resources.Res
 import examplekmputilities.composeapp.generated.resources.compose_multiplatform
+import id.feinn.utility.context.FeinnLocalPlatformContext
+import id.feinn.utility.launcher.rememberFeinnLauncer
 import id.feinn.utility.time.FeinnDate
 import id.feinn.utility.time.FeinnDateTime
 import id.feinn.utility.time.getFormattedDate
@@ -27,6 +29,8 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
+        val context = FeinnLocalPlatformContext.current
+        val launcher = rememberFeinnLauncer(context)
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = {
                 showContent = !showContent
@@ -51,6 +55,8 @@ fun App() {
                 val feinnDate2 = feinnDateTime.toFeinnDate()
 
                 println(feinnDate2)
+
+                launcher.launch("https://www.google.com")
             }) {
                 Text("Click me!")
             }

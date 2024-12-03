@@ -31,5 +31,7 @@ dependencyResolutionManagement {
 include(
     ":composeApp",
     ":iosApp",
-    ":core:utilities:time"
+    ":core:utilities:time",
+    ":core:utilities:launcher",
+    ":core:utilities:context"
 )

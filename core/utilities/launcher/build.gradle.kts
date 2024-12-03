@@ -29,7 +29,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "FeinnDateTime"
+            baseName = "FeinnLauncher"
             isStatic = true
         }
     }
@@ -38,12 +38,13 @@ kotlin {
 
         commonMain.dependencies {
             implementation(compose.runtime)
+            implementation(projects.core.utilities.context)
         }
     }
 }
 
 android {
-    namespace = "id.feinn.utility.time"
+    namespace = "id.feinn.utility.launcher"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig.minSdk = libs.versions.android.minSdk.get().toInt()
     buildFeatures.compose = true
@@ -59,14 +60,14 @@ if (mavenPropertiesFile.exists()) {
 mavenPublishing {
     coordinates(
         groupId = mavenProperties.getProperty("groupId"),
-        artifactId = mavenProperties.getProperty("artifactIdDateTime"),
+        artifactId = mavenProperties.getProperty("artifactIdLauncher"),
         version = mavenProperties.getProperty("version")
     )
 
     // Configure POM metadata for the published artifact
     pom {
-        name.set("KMP Utilities Date Time")
-        description.set("FeinnDateTime is a custom library that enables date and time management in Android and iOS applications")
+        name.set("KMP Utilities Launcher")
+        description.set("FeinnLauncher is a custom library that open url or file in Android and iOS applications")
         inceptionYear.set("2024")
         url.set("https://github.com/azisanw19/kmp-utilities")
 
