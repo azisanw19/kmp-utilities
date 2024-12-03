@@ -32,6 +32,6 @@ public actual class FeinnLauncher{
 }
 
 @Composable
-public actual fun rememberFeinnLauncer(_: FeinnLocalContext): FeinnLauncher {
+public actual fun rememberFeinnLauncer(context: FeinnLocalContext): FeinnLauncher {
     return remember { FeinnLauncher() }
 }
