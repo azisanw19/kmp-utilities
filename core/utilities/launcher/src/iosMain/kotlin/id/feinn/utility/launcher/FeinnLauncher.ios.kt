@@ -10,7 +10,26 @@ import platform.UIKit.UIDocumentInteractionControllerDelegateProtocol
 import platform.UIKit.UIViewController
 import platform.darwin.NSObject
 
-public actual class FeinnLauncher{
+/**
+ * A class responsible for handling URI launching on iOS platforms.
+ *
+ * This class provides a method to either open a URL in the default browser or
+ * preview documents using `UIDocumentInteractionController`.
+ */
+public actual class FeinnLauncher {
+    /**
+     * Launches a URI on iOS.
+     *
+     * If the URI scheme is "https" or "http", the method opens the URL in the default browser
+     * using `UIApplication.sharedApplication.openURL`. For other URI schemes, it uses
+     * `UIDocumentInteractionController` to preview the document.
+     *
+     * The `UIDocumentInteractionController` is configured with a delegate to provide the
+     * current `UIViewController` for document previews.
+     *
+     * @param uri The URI string to be launched.
+     * @throws IllegalArgumentException If the URI string is invalid or cannot be parsed.
+     */
     public actual fun launch(uri: String) {
         val paths = uri.split(":")
         if (paths.firstOrNull() == "https" || paths.firstOrNull() == "http") {
@@ -31,6 +50,15 @@ public actual class FeinnLauncher{
     }
 }
 
+/**
+ * A Composable function that remembers and provides an instance of `FeinnLauncher` for iOS.
+ *
+ * This function uses Jetpack Compose's `remember` to create and retain a single instance of
+ * `FeinnLauncher` throughout the composable lifecycle.
+ *
+ * @param context The `FeinnLocalContext` (not used directly in this implementation).
+ * @return An instance of `FeinnLauncher`.
+ */
 @Composable
 public actual fun rememberFeinnLauncer(context: FeinnLocalContext): FeinnLauncher {
     return remember { FeinnLauncher() }
