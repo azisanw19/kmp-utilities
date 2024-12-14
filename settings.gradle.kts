@@ -33,5 +33,6 @@ include(
     ":iosApp",
     ":core:utilities:time",
     ":core:utilities:launcher",
-    ":core:utilities:context"
+    ":core:utilities:context",
+    ":core:utilities:permission"
 )
