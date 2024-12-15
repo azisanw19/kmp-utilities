@@ -14,6 +14,10 @@ import examplekmputilities.composeapp.generated.resources.Res
 import examplekmputilities.composeapp.generated.resources.compose_multiplatform
 import id.feinn.utility.context.FeinnLocalPlatformContext
 import id.feinn.utility.launcher.rememberFeinnLauncer
+import id.feinn.utility.permission.FeinnPermissionStatus
+import id.feinn.utility.permission.FeinnPermissionType
+import id.feinn.utility.permission.rememberFeinnPermissionState
+import id.feinn.utility.permission.shouldShowRationale
 import id.feinn.utility.time.FeinnDate
 import id.feinn.utility.time.FeinnDateTime
 import id.feinn.utility.time.getFormattedDate
@@ -30,7 +34,13 @@ fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         val context = FeinnLocalPlatformContext.current
-        val launcher = rememberFeinnLauncer(context)
+        val launcher = rememberFeinnLauncer()
+        val permissionCamera = rememberFeinnPermissionState(
+            permission = FeinnPermissionType.Camera,
+            onPermissionResult = {
+                println("Permission result: $it")
+            }
+        )
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = {
                 showContent = !showContent
@@ -65,6 +75,26 @@ fun App() {
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                     Image(painterResource(Res.drawable.compose_multiplatform), null)
                     Text("Compose: $greeting")
+                    Button(
+                        onClick = {
+                            when (permissionCamera.status) {
+                                is FeinnPermissionStatus.Granted -> {
+                                    println("permissionCamera.status: ${permissionCamera.status}")
+                                }
+                                is FeinnPermissionStatus.Denied -> {
+                                    if (permissionCamera.status.shouldShowRationale) {
+                                        permissionCamera.launchSettingRequest()
+                                    } else {
+                                        permissionCamera.launchPermissionRequest()
+                                    }
+                                }
+                            }
+                        }
+                    ) {
+                       Text(
+                           text = "Camera Permission"
+                       )
+                    }
                 }
             }
         }

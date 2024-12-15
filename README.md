@@ -7,212 +7,14 @@ KMP Library Utilities is a Kotlin Multiplatform library that offers utility func
 simplify cross-platform development. It is designed to boost productivity with ready-to-use 
 features across multiple target platforms.
 
-## Time Utilities
+## Documentation
 
-First add the dependency to your project:
+For more information, check the documentation:
 
-```kotlin
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation("id.feinn.azisanw19:feinn-date-time:$kmp_utils_version")
-}
-```
-
-Make sure to replace $kmp_utils_version with the appropriate version of the library.
-
-### Usage
-
-After adding the dependency, you can start using the Feinn Date Time utilities in your Kotlin 
-Multiplatform project.
-
-#### Getting the Current Date:
-
-You can easily get the current date using the `FeinnDate` class. Here's an example:
-
-```kotlin
-// Get the current date and time
-val currentDate = FeinnDate.now()
-
-// Print the current date and time
-println("Current Date and Time: ${currentDate.toString()}")
-```
-
-#### Formatting Dates:
-
-You can format a `FeinnDate` instance into a string with a specific format and locale:
-
-```kotlin
-val currentDate = FeinnDate.now()
-
-// Format the date as "yyyy-MM-dd"
-val formattedDate = currentDate.getFormattedDate(
-    format = FeinnDateTimeFormatter.ISO_LOCAL_DATE,
-    locale = FeinnLocale.getDefault()
-)
-
-println("Formatted Date: $formattedDate")
-```
-
-#### Parsing a Date from a String:
-
-You can also parse a date string into a `FeinnDate` instance:
-
-```kotlin
-// Parse a date string with the format "yyyy-MM-dd"
-val dateString = "2024-11-23"
-val parsedDate = FeinnDate.parse(
-    dateString, 
-    format = FeinnDateTimeFormatter.ISO_LOCAL_DATE, 
-    locale = FeinnLocale.getDefault()
-)
-
-println("Parsed Date: ${parsedDate.toString()}")
-```
-
-#### Working with Different Locales Date:
-
-You can work with different locales by using the `FeinnLocale` class. Here's how to get the default 
-locale of the system and format a date accordingly:
-
-```kotlin
-val feinnLocale = FeinnLocale.getDefault()
-
-// Format the current date using the default locale
-val formattedDate = currentDate.getFormattedDate(format = "dd MMMM yyyy", locale = feinnLocale)
-
-println("Formatted Date with Default Locale: $formattedDate")
-```
-
-#### Getting Milliseconds from `FeinnDate`:
-
-You can get the milliseconds from a `FeinnDate` instance:
-
-```kotlin
-val currentDate = FeinnDate.now()
-
-// Get the current time in milliseconds
-val millis = currentDate.millisSeconds
-
-println("Current Milliseconds: $millis")
-```
-
-#### Getting the Current Date and Time:
-
-You can easily get the current date and time using the `FeinnDateTime` class. Here's an example:
-
-```kotlin
-// Get the current date and time
-val currentDateTime = FeinnDateTime.now()
-
-// Print the current date and time
-println("Current Date and Time: ${currentDateTime.toString()}")
-```
-
-#### Formatting Dates and Times:
-
-You can format a `FeinnDateTime` instance into a string with a specific format and locale:
-
-```kotlin
-val currentDateTime = FeinnDateTime.now()
-
-// Format the date and time as "yyyy-MM-dd HH:mm:ss"
-val formattedDateTime = currentDateTime.getFormattedDateTime(
-    format = "yyyy-MM-dd HH:mm:ss",
-    locale = FeinnLocale.getDefault()
-)
-
-println("Formatted Date and Time: $formattedDateTime")
-```
-
-#### Parsing a Date and Time from a String:
-
-You can also parse a date and time string into a `FeinnDateTime` instance:
-
-```kotlin
-// Parse a date and time string with the format "yyyy-MM-dd HH:mm:ss"
-val dateTimeString = "2024-11-23 14:30:00"
-val parsedDateTime = FeinnDateTime.parse(
-    dateTimeString, 
-    format = "yyyy-MM-dd HH:mm:ss", 
-    locale = FeinnLocale.getDefault()
-)
-
-println("Parsed Date and Time: ${parsedDateTime.toString()}")
-```
-
-#### Converting to `FeinnDate`:
-
-You can convert a `FeinnDateTime` instance to a `FeinnDate` instance:
-
-```kotlin
-val currentDateTime = FeinnDateTime.now()
-
-// Convert to FeinnDate (start of the day)
-val feinnDate = currentDateTime.toFeinnDate()
-
-println("FeinnDate from DateTime: ${feinnDate.toString()}")
-```
-
-#### Getting Milliseconds from `FeinnDateTime`:
-
-You can get the milliseconds from a `FeinnDateTime` instance:
-
-```kotlin
-val currentDateTime = FeinnDateTime.now()
-
-// Get the current time in milliseconds
-val millis = currentDateTime.millisSeconds
-
-println("Current Milliseconds: $millis")
-```
-
-#### Working with Different Locales:
-
-You can work with different locales by using the `FeinnLocale` class. Here's how to get the default
-locale of the system and format a date and time accordingly:
-
-```kotlin
-val feinnLocale = FeinnLocale.getDefault()
-
-// Format the current date and time using the default locale
-val formattedDateTime = currentDateTime.getFormattedDateTime(
-    format = "dd MMMM yyyy HH:mm:ss",
-    locale = feinnLocale
-)
-
-println("Formatted Date and Time with Default Locale: $formattedDateTime")
-```
-
-## Document uri Launcher Utilities
-
-First add the dependency to your project:
-
-```kotlin
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation("id.feinn.azisanw19:feinn-platform-context:$kmp_utils_version")
-    implementation("id.feinn.azisanw19:feinn-launcher:$kmp_utils_version")
-}
-```
-
-Make sure to replace $kmp_utils_version with the appropriate version of the library.
-
-### Usage
-
-```kotlin
-
-val context = FeinnLocalPlatformContext.current 
-val launcher = rememberFeinnLauncer(context)
-
-launcher.launch("https://www.google.com")
-
-```
+[Date Time Utilities](/documentation/FeinnDateTime.md)
+[Document uri Launcher Utilities](/documentation/FeinnLauncher.md)
+[Utilities Permission](/documentation/FeinnPermission.md)
+[Platform Context](/documentation/FeinnPlatformContext.md)
 
 ## Example
 
@@ -242,10 +44,56 @@ In Xcode, configure signing, then run.
 
 ## Contributing
 
-Please open an issue first before making a pull request.
+We welcome contributions to improve this project! Please follow these steps to ensure a smooth 
+collaboration:
+
+1. **Open an Issue**
+
+Before starting any work, kindly open an issue to discuss your proposed changes or additions. 
+This helps us align on the direction and avoid duplicate efforts.
+
+2. **Fork the Repository**
+
+Once your issue has been reviewed and approved, fork the repository to your GitHub account. 
+This allows you to make changes independently.
+
+3. **Work on the `develop` Branch**
+
+Create a new branch based on the develop branch in your forked repository. 
+Use a descriptive name for your branch, such as feature/add-new-component or bugfix/fix-login-error 
+or dev/#issue-number.
+
+```bash
+git checkout develop
+git checkout -b feature/your-branch-name
+```
+
+4. **Submit a Pull Request**
+
+Once your work is complete, push your changes to your forked repository and open a pull request (PR) 
+to merge your branch into the develop branch of the original repository. Include a clear description 
+of the changes you’ve made and reference the related issue in your PR.
+
+> [!NOTE]
+> Ensure your code adheres to the project’s coding standards and includes relevant tests or 
+> documentation updates.
+
+5. **Collaborate on Review**
+
+Be ready to respond to feedback or requested changes during the review process. This ensures your 
+contribution meets the project’s quality and functionality standards.
+
+Thank you for contributing and helping us improve this project! 😊
+
+## Find this library useful?
+Support it by joining __[stargazers](https://github.com/azisanw19/kmp-utilities/stargazers)__ for this repository.
+Also, __[follow me](https://github.com/azisanw19)__ on GitHub for more libraries! 🤩
+
+You can always <a href="https://buymeacoffee.com/azisanw19"><img src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=azisanw19&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
 
 ## License
 
+```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -257,6 +105,13 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```
+
+
+
+
+
+
 
 [Android Studio]: https://developer.android.com/studio
 
