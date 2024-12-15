@@ -68,7 +68,7 @@ mavenPublishing {
     pom {
         name.set("KMP Utilities Context")
         description.set("FeinnContext is a custom library that open url or file in Android and iOS applications")
-        inceptionYear.set("2024")
+        inceptionYear.set(mavenProperties.getProperty("year"))
         url.set("https://github.com/azisanw19/kmp-utilities")
 
         licenses {

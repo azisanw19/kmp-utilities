@@ -67,7 +67,7 @@ mavenPublishing {
     pom {
         name.set("KMP Utilities Date Time")
         description.set("FeinnDateTime is a custom library that enables date and time management in Android and iOS applications")
-        inceptionYear.set("2024")
+        inceptionYear.set(mavenProperties.getProperty("year"))
         url.set("https://github.com/azisanw19/kmp-utilities")
 
         licenses {

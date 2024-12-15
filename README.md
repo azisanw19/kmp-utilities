@@ -57,21 +57,21 @@ This helps us align on the direction and avoid duplicate efforts.
 Once your issue has been reviewed and approved, fork the repository to your GitHub account. 
 This allows you to make changes independently.
 
-3. **Work on the `develop` Branch**
+3. **Create a New Branch**
 
-Create a new branch based on the develop branch in your forked repository. 
-Use a descriptive name for your branch, such as feature/add-new-component or bugfix/fix-login-error 
-or dev/#issue-number.
+Create a new branch based on the main branch in your forked repository.
+Use a descriptive name for your branch, such as `feature/add-new-component` or `bugfix/fix-login-error`
+or `dev/#issue-number`.
 
 ```bash
-git checkout develop
+git checkout main
 git checkout -b feature/your-branch-name
 ```
 
 4. **Submit a Pull Request**
 
-Once your work is complete, push your changes to your forked repository and open a pull request (PR) 
-to merge your branch into the develop branch of the original repository. Include a clear description 
+Once your work is complete, push your changes to your forked repository and open a pull request (PR)
+to merge your branch into the main branch of the original repository. Include a clear description
 of the changes you’ve made and reference the related issue in your PR.
 
 > [!NOTE]
@@ -80,8 +80,7 @@ of the changes you’ve made and reference the related issue in your PR.
 
 5. **Collaborate on Review**
 
-Be ready to respond to feedback or requested changes during the review process. This ensures your 
-contribution meets the project’s quality and functionality standards.
+Be ready to respond to feedback or requested changes during the review process. This ensures your
 
 Thank you for contributing and helping us improve this project! 😊
 

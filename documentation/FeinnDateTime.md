@@ -1,6 +1,6 @@
 ![badge][badge-android]
 ![badge][badge-ios]
-[![badge][badge-feinn-date-time]]([feinn-date-time-link])
+[![badge][badge-feinn-date-time]](https://central.sonatype.com/artifact/id.feinn.azisanw19/feinn-date-time)
 
 
 # Date Time Utilities
@@ -184,6 +184,5 @@ println("Formatted Date and Time with Default Locale: $formattedDateTime")
 
 
 [badge-feinn-date-time]: https://img.shields.io/maven-central/v/id.feinn.azisanw19/feinn-date-time.svg?style=flat
-[feinn-date-time-link]: https://central.sonatype.com/artifact/id.feinn.azisanw19/feinn-date-time
 [badge-android]: http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat
 [badge-ios]: http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat

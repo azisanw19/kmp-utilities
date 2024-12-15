@@ -1,6 +1,6 @@
 ![badge][badge-android]
 ![badge][badge-ios]
-[![badge][badge-feinn-launcher]]([feinn-launcher-link])
+[![badge][badge-feinn-launcher]](https://central.sonatype.com/artifact/id.feinn.azisanw19/feinn-launcher)
 
 # Document uri Launcher Utilities
 
@@ -29,6 +29,5 @@ launcher.launch("https://www.google.com")
 ```
 
 [badge-feinn-launcher]: https://img.shields.io/maven-central/v/id.feinn.azisanw19/feinn-launcher.svg?style=flat
-[feinn-launcher-link]: https://central.sonatype.com/artifact/id.feinn.azisanw19/feinn-launcher
 [badge-android]: http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat
 [badge-ios]: http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat

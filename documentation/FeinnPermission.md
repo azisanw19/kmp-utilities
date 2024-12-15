@@ -1,6 +1,6 @@
 ![badge][badge-android]
 ![badge][badge-ios]
-[![badge][badge-feinn-permission]]([feinn-permission-link])
+[![badge][badge-feinn-permission]](https://central.sonatype.com/artifact/id.feinn.azisanw19/feinn-permission)
 
 # Utilities Permission
 
@@ -74,4 +74,3 @@ The string value is the message that will be displayed to the user when the perm
 [badge-android]: http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat
 [badge-ios]: http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat
 [badge-feinn-permission]: https://img.shields.io/maven-central/v/id.feinn.azisanw19/feinn-permission.svg?style=flat
-[feinn-permission-link]: https://central.sonatype.com/artifact/id.feinn.azisanw19/feinn-permission

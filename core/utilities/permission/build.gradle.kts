@@ -72,7 +72,7 @@ mavenPublishing {
     pom {
         name.set("KMP Utilities File")
         description.set("FeinnPermission is a custom library that handle permission for Android and iOS applications")
-        inceptionYear.set("2025")
+        inceptionYear.set(mavenProperties.getProperty("year"))
         url.set("https://github.com/azisanw19/kmp-utilities")
 
         licenses {
