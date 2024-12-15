@@ -16,7 +16,6 @@ import id.feinn.utility.context.FeinnLocalPlatformContext
 import id.feinn.utility.launcher.rememberFeinnLauncer
 import id.feinn.utility.permission.FeinnPermissionStatus
 import id.feinn.utility.permission.FeinnPermissionType
-import id.feinn.utility.permission.isGranted
 import id.feinn.utility.permission.rememberFeinnPermissionState
 import id.feinn.utility.permission.shouldShowRationale
 import id.feinn.utility.time.FeinnDate
@@ -35,7 +34,7 @@ fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         val context = FeinnLocalPlatformContext.current
-        val launcher = rememberFeinnLauncer(context)
+        val launcher = rememberFeinnLauncer()
         val permissionCamera = rememberFeinnPermissionState(
             permission = FeinnPermissionType.Camera,
             onPermissionResult = {

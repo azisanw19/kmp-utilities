@@ -36,9 +36,13 @@ kotlin {
 
     sourceSets {
 
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+        }
+
         commonMain.dependencies {
             implementation(compose.runtime)
-            implementation(projects.core.utilities.context)
+            implementation(libs.androidx.lifecycle.runtime.compose)
         }
     }
 }

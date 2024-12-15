@@ -1,7 +1,6 @@
 package id.feinn.utility.launcher
 
 import androidx.compose.runtime.Composable
-import id.feinn.utility.context.FeinnLocalContext
 
 /**
  * An expected class for platform-specific URI launching functionality.
@@ -25,14 +24,13 @@ public expect class FeinnLauncher {
 }
 
 /**
- * An expected composable function for creating or remembering an instance of `FeinnLauncher`.
+ * A composable function to create or remember an instance of `FeinnLauncher`.
  *
- * This function provides a way to use `FeinnLauncher` in a platform-agnostic way within Jetpack Compose.
- * The actual implementation will handle the creation or retrieval of the `FeinnLauncher` instance
- * for the specific platform.
+ * This function provides a platform-agnostic way to use `FeinnLauncher` within Jetpack Compose.
+ * It ensures that an appropriate instance of `FeinnLauncher` is either created or retrieved
+ * based on the platform-specific implementation.
  *
- * @param context The platform-specific context (e.g., `Context` on Android or `FeinnLocalContext` on iOS).
- * @return An instance of `FeinnLauncher` appropriate for the current platform.
+ * @return An instance of `FeinnLauncher` suitable for the current platform.
  */
 @Composable
-public expect fun rememberFeinnLauncer(context: FeinnLocalContext): FeinnLauncher
+public expect fun rememberFeinnLauncer(): FeinnLauncher
