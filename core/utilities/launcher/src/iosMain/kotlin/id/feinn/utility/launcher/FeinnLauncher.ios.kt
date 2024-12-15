@@ -2,7 +2,6 @@ package id.feinn.utility.launcher
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import id.feinn.utility.context.FeinnLocalContext
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 import platform.UIKit.UIDocumentInteractionController
@@ -51,15 +50,15 @@ public actual class FeinnLauncher {
 }
 
 /**
- * A Composable function that remembers and provides an instance of `FeinnLauncher` for iOS.
+ * A composable function to create or remember an instance of `FeinnLauncher` for the current platform.
  *
- * This function uses Jetpack Compose's `remember` to create and retain a single instance of
- * `FeinnLauncher` throughout the composable lifecycle.
+ * This actual implementation ensures that a single instance of `FeinnLauncher` is remembered
+ * across recompositions within a composable scope. It uses Jetpack Compose's `remember` function
+ * to maintain the instance lifecycle as long as the composable is in scope.
  *
- * @param context The `FeinnLocalContext` (not used directly in this implementation).
  * @return An instance of `FeinnLauncher`.
  */
 @Composable
-public actual fun rememberFeinnLauncer(context: FeinnLocalContext): FeinnLauncher {
+public actual fun rememberFeinnLauncer(): FeinnLauncher {
     return remember { FeinnLauncher() }
 }

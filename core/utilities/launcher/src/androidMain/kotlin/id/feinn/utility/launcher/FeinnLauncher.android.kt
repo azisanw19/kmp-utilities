@@ -6,7 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import id.feinn.utility.context.FeinnLocalContext
+import androidx.compose.ui.platform.LocalContext
 import kotlin.jvm.Throws
 
 /**
@@ -44,15 +44,16 @@ public actual class FeinnLauncher(
 }
 
 /**
- * A Composable function that remembers and provides an instance of `FeinnLauncher`.
+ * A composable function to create or remember an instance of `FeinnLauncher` for the current platform.
  *
- * This function uses Jetpack Compose's `remember` to create and retain a single
- * instance of `FeinnLauncher` throughout the composable lifecycle.
+ * This actual implementation retrieves the current platform's context using `LocalContext.current`
+ * and uses Jetpack Compose's `remember` function to create and retain an instance of `FeinnLauncher`.
+ * The instance is tied to the composable lifecycle and will be recomposed only when necessary.
  *
- * @param context The context from `FeinnLocalContext`, used to initialize the launcher.
- * @return An instance of `FeinnLauncher`.
+ * @return An instance of `FeinnLauncher` initialized with the current context.
  */
 @Composable
-public actual fun rememberFeinnLauncer(context: FeinnLocalContext): FeinnLauncher {
+public actual fun rememberFeinnLauncer(): FeinnLauncher {
+    val context = LocalContext.current
     return remember { FeinnLauncher(context = context) }
 }

@@ -23,7 +23,7 @@ targets:
           - UIInterfaceOrientationPortrait
         CADisableMinimumFrameDurationOnPhone: true
         LSRequiresIPhoneOS: true
-        NSBluetoothAlwaysUsageDescription: This example application for KMP Utilities.
+        NSCameraUsageDescription: Camera permission is required to take pictures.
     preBuildScripts:
       - path: preBuild.sh
     sources:
