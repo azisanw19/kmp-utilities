@@ -11,10 +11,10 @@ features across multiple target platforms.
 
 For more information, check the documentation:
 
-[Date Time Utilities](/documentation/FeinnDateTime.md)
-[Document uri Launcher Utilities](/documentation/FeinnLauncher.md)
-[Utilities Permission](/documentation/FeinnPermission.md)
-[Platform Context](/documentation/FeinnPlatformContext.md)
+- [Date Time Utilities](/documentation/FeinnDateTime.md)
+- [Document uri Launcher Utilities](/documentation/FeinnLauncher.md)
+- [Utilities Permission](/documentation/FeinnPermission.md)
+- [Platform Context](/documentation/FeinnPlatformContext.md)
 
 ## Example
 
