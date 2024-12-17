@@ -1,6 +1,7 @@
 package id.feinn.utility.time
 
 import platform.Foundation.NSLocale
+import platform.Foundation.currentLocale
 import platform.Foundation.systemLocale
 
 /**
@@ -38,7 +39,7 @@ public actual class FeinnLocale() {
      *
      * This property stores the system's default locale if not explicitly set.
      */
-    public var locale: NSLocale = NSLocale.systemLocale
+    public var locale: NSLocale = NSLocale.currentLocale
 
     /**
      * Returns the string representation of the current [FeinnLocale] instance.
@@ -97,7 +98,7 @@ public actual class FeinnLocale() {
  * - The `locale` property is set using the [NSLocale.systemLocale] to access the system's default locale.
  */
 public actual fun FeinnLocale.Companion.getDefault(): FeinnLocale {
-    return FeinnLocale(NSLocale.systemLocale)
+    return FeinnLocale(NSLocale.currentLocale)
 }
 
 /**

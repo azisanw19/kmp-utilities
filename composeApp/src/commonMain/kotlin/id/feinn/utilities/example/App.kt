@@ -1,17 +1,16 @@
 package id.feinn.utilities.example
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import examplekmputilities.composeapp.generated.resources.Res
-import examplekmputilities.composeapp.generated.resources.compose_multiplatform
+import androidx.compose.ui.unit.dp
 import id.feinn.utility.context.FeinnLocalPlatformContext
 import id.feinn.utility.launcher.rememberFeinnLauncer
 import id.feinn.utility.permission.FeinnPermissionStatus
@@ -20,82 +19,88 @@ import id.feinn.utility.permission.rememberFeinnPermissionState
 import id.feinn.utility.permission.shouldShowRationale
 import id.feinn.utility.time.FeinnDate
 import id.feinn.utility.time.FeinnDateTime
-import id.feinn.utility.time.getFormattedDate
 import id.feinn.utility.time.getFormattedDateTime
 import id.feinn.utility.time.now
 import id.feinn.utility.time.parse
-import id.feinn.utility.time.toFeinnDate
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
         val context = FeinnLocalPlatformContext.current
-        val launcher = rememberFeinnLauncer()
-        val permissionCamera = rememberFeinnPermissionState(
-            permission = FeinnPermissionType.Camera,
-            onPermissionResult = {
-                println("Permission result: $it")
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Current date: ${FeinnDate.now()}"
+            )
+            Spacer(
+                modifier = Modifier.height(12.dp)
+            )
+            Text(
+                text = "Current date time: ${FeinnDateTime.now().getFormattedDateTime("dd MMMM yyyy HH:mm:ss")}"
+            )
+            Spacer(
+                modifier = Modifier.height(12.dp)
+            )
+            Text(
+                text = "Parse date: ${FeinnDate.parse("2000-01-19", format = "yyyy-MM-dd")}"
+            )
+            Spacer(
+                modifier = Modifier.height(12.dp)
+            )
+            Text(
+                text = "Date time parse: ${FeinnDateTime.parse("2021-01-01 12:00:00", "yyyy-MM-dd HH:mm:ss")}"
+            )
+            Spacer(
+                modifier = Modifier.height(12.dp)
+            )
+            val launcher = rememberFeinnLauncer()
+
+            Button(
+                onClick = {
+                    launcher.launch("https://www.google.com")
+                }
+            ) {
+                Text("Open Google")
             }
-        )
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = {
-                showContent = !showContent
-                val feinnDate = FeinnDate.now()
-
-                feinnDate.getFormattedDate()
-                FeinnDate.parse("2021-01-01", format = "yyyy-MM-dd")
-
-                val formattedDate = feinnDate.getFormattedDate("dd-MM-yyyy")
-
-                println(formattedDate)
-
-                val feinnDateTime = FeinnDateTime.now()
-                val formattedDateTime = feinnDateTime.getFormattedDateTime("yyyy-MM-dd HH:mm:ss")
-
-                println(formattedDateTime)
-
-                val parsedDateTime = FeinnDateTime.parse("2021-01-01T12:00:00", "yyyy-MM-dd'T'HH:mm:ss")
-
-                println(parsedDateTime)
-
-                val feinnDate2 = feinnDateTime.toFeinnDate()
-
-                println(feinnDate2)
-
-                launcher.launch("https://www.google.com")
-            }) {
-                Text("Click me!")
+            Button(
+                onClick = {
+                    launcher.launch("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")
+                }
+            ) {
+                Text("Open pdf file")
             }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                    Button(
-                        onClick = {
-                            when (permissionCamera.status) {
-                                is FeinnPermissionStatus.Granted -> {
-                                    println("permissionCamera.status: ${permissionCamera.status}")
-                                }
-                                is FeinnPermissionStatus.Denied -> {
-                                    if (permissionCamera.status.shouldShowRationale) {
-                                        permissionCamera.launchSettingRequest()
-                                    } else {
-                                        permissionCamera.launchPermissionRequest()
-                                    }
-                                }
+            val permissionCamera = rememberFeinnPermissionState(
+                permission = FeinnPermissionType.Camera,
+                onPermissionResult = {
+                    println("Permission result: $it")
+                }
+            )
+            Text(
+                "Permission Camera: ${permissionCamera.status}"
+            )
+            Button(
+                onClick = {
+                    when (permissionCamera.status) {
+                        is FeinnPermissionStatus.Granted -> {
+                            println("permissionCamera.status: ${permissionCamera.status}")
+                        }
+                        is FeinnPermissionStatus.Denied -> {
+                            if (permissionCamera.status.shouldShowRationale) {
+                                permissionCamera.launchSettingRequest()
+                            } else {
+                                permissionCamera.launchPermissionRequest()
                             }
                         }
-                    ) {
-                       Text(
-                           text = "Camera Permission"
-                       )
                     }
                 }
+            ) {
+                Text(
+                    text = "Request Camera Permission"
+                )
             }
         }
     }
