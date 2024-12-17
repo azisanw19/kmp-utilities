@@ -103,10 +103,10 @@ internal class FeinnMutablePermissionCaptureDevice(
     private fun getPermissionStatus(): FeinnPermissionStatus {
         val authorizeStatus = AVCaptureDevice.authorizationStatusForMediaType(mediaType)
         return when (authorizeStatus) {
-            AVAuthorizationStatusNotDetermined -> FeinnPermissionStatus.Denied(true)
-            AVAuthorizationStatusRestricted, AVAuthorizationStatusDenied -> FeinnPermissionStatus.Denied(false)
+            AVAuthorizationStatusNotDetermined -> FeinnPermissionStatus.Denied(false)
+            AVAuthorizationStatusRestricted, AVAuthorizationStatusDenied -> FeinnPermissionStatus.Denied(true)
             AVAuthorizationStatusAuthorized -> FeinnPermissionStatus.Granted
-            else -> FeinnPermissionStatus.Denied(true)
+            else -> FeinnPermissionStatus.Denied(false)
         }
     }
 }
