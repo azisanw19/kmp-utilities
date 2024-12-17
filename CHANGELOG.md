@@ -1,3 +1,17 @@
+# 1.0.0-alpha05
+
+## Feinn Permission
+
+### Bug Fixes
+
+- iOS shouldShowRationale false when notDetermined, true when restricted or denied
+
+## Feinn Date Time
+
+### Bug Fixes
+
+- iOS default locale to currentLocale
+
 # 1.0.0-alpha04
 
 ## Feinn Permission
