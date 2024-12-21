@@ -1,3 +1,11 @@
+# 1.0.0-alpha06
+
+## Feinn Permission
+
+### New Feature
+
+- Permission notification
+
 # 1.0.0-alpha05
 
 ## Feinn Permission

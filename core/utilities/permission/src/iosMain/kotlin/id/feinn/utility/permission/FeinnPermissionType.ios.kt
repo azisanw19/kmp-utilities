@@ -1,7 +1,13 @@
 package id.feinn.utility.permission
 
 import id.feinn.utility.permission.feature.FeinnMutablePermissionCaptureDevice
+import id.feinn.utility.permission.feature.FeinnMutablePermissionUserNotification
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import platform.AVFoundation.AVMediaTypeVideo
+import platform.UserNotifications.UNAuthorizationOptionAlert
+import platform.UserNotifications.UNAuthorizationOptionBadge
+import platform.UserNotifications.UNAuthorizationOptionSound
 
 /**
  * Represents different types of permissions that can be managed within the application.
@@ -32,6 +38,24 @@ public actual enum class FeinnPermissionType {
     Camera {
         override fun getMutablePermission(): FeinnMutablePermissionState =
             FeinnMutablePermissionCaptureDevice(this, AVMediaTypeVideo)
+    },
+
+    /**
+     * Represents the notification permission.
+     *
+     * This entry manages permissions for accessing notification-related features such as alerts,
+     * badges, and sounds using `UNAuthorizationOption` settings.
+     * It provides a mutable permission state for controlling notification access.
+     */
+    Notification {
+        override fun getMutablePermission(): FeinnMutablePermissionState =
+            FeinnMutablePermissionUserNotification(
+                permission = this,
+                options = UNAuthorizationOptionAlert
+                        or UNAuthorizationOptionSound
+                        or UNAuthorizationOptionBadge,
+                dispatcher = Dispatchers.IO
+            )
     };
 
     /**
@@ -42,5 +66,5 @@ public actual enum class FeinnPermissionType {
      *
      * @return A `FeinnMutablePermissionState` object representing the current permission type's state.
      */
-    internal abstract fun getMutablePermission() : FeinnMutablePermissionState
+    internal abstract fun getMutablePermission(): FeinnMutablePermissionState
 }

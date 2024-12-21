@@ -71,6 +71,25 @@ On iOS you need to add the following key to your `Info.plist` file:
 
 The string value is the message that will be displayed to the user when the permission is requested.
 
+### Notification
+
+**Android**
+
+On Android API version 33 and up, you need to add the following permission to your `AndroidManifest.xml` file:
+
+```xml
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+```
+
+**iOS**
+
+On iOS you need to add the following key to your `Info.plist` file:
+
+```
+<key>NSUserNotificationsUsageDescription</key>
+<string>Notifications permission is required to show notifications</string>
+```
+
 [badge-android]: http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat
 [badge-ios]: http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat
 [badge-feinn-permission]: https://img.shields.io/maven-central/v/id.feinn.azisanw19/feinn-permission.svg?style=flat

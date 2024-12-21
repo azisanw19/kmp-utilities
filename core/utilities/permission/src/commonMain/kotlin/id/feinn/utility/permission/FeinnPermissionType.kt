@@ -7,6 +7,13 @@ public expect enum class FeinnPermissionType {
 
     /**
      * Permission to access the device's camera.
+     *
+     * This permission allows the application to access the camera hardware on the device.
      */
-    Camera
+    Camera,
+
+    /**
+     * Permission to send notifications to the user.
+     */
+    Notification
 }

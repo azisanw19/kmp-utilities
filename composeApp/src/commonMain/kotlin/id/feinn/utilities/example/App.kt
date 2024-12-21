@@ -85,7 +85,7 @@ fun App() {
             Button(
                 onClick = {
                     when (permissionCamera.status) {
-                        is FeinnPermissionStatus.Granted -> {
+                        FeinnPermissionStatus.Granted -> {
                             println("permissionCamera.status: ${permissionCamera.status}")
                         }
                         is FeinnPermissionStatus.Denied -> {
@@ -95,12 +95,48 @@ fun App() {
                                 permissionCamera.launchPermissionRequest()
                             }
                         }
+
+                        FeinnPermissionStatus.Unknown -> {
+                            println("permissionCamera.status: ${permissionCamera.status}")
+                        }
                     }
                 }
             ) {
                 Text(
                     text = "Request Camera Permission"
                 )
+            }
+
+            val permissionNotification = rememberFeinnPermissionState(
+                permission = FeinnPermissionType.Notification,
+                onPermissionResult = {
+                    println("Permission result: $it")
+                }
+            )
+            Text(
+                "Permission Notification: ${permissionNotification.status}"
+            )
+
+            Button(
+                onClick = {
+                    when(permissionNotification.status) {
+                        FeinnPermissionStatus.Granted -> {
+                            println("permissionNotification.status: ${permissionNotification.status}")
+                        }
+                        is FeinnPermissionStatus.Denied -> {
+                            if (permissionNotification.status.shouldShowRationale) {
+                                permissionNotification.launchSettingRequest()
+                            } else {
+                                permissionNotification.launchPermissionRequest()
+                            }
+                        }
+                        FeinnPermissionStatus.Unknown -> {
+                            println("permissionNotification.status: ${permissionNotification.status}")
+                        }
+                    }
+                }
+            ) {
+                Text("Request Notification Permission")
             }
         }
     }
