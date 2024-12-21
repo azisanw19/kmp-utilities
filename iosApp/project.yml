@@ -24,6 +24,7 @@ targets:
         CADisableMinimumFrameDurationOnPhone: true
         LSRequiresIPhoneOS: true
         NSCameraUsageDescription: Camera permission is required to take pictures.
+        NSUserNotificationsUsageDescription: Notification permission is required to show notification
     preBuildScripts:
       - path: preBuild.sh
     sources:
