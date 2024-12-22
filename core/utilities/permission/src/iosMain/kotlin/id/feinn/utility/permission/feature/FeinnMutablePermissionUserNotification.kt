@@ -85,29 +85,28 @@ internal class FeinnMutablePermissionUserNotification(
      */
     private suspend fun getPermissionStatus(): FeinnPermissionStatus =
         suspendCancellableCoroutine { continuation ->
-            coroutineScope.launch {
-                UNUserNotificationCenter.currentNotificationCenter()
-                    .getNotificationSettingsWithCompletionHandler(
-                        completionHandler = { uNNotificationSettings ->
-                            if (uNNotificationSettings == null) {
-                                // Resume with failure if notification settings are null
-                                continuation.resumeWith(Result.failure(IllegalStateException("Notification settings is null")))
-                                return@getNotificationSettingsWithCompletionHandler
-                            }
-
-                            // Map the authorization status to a FeinnPermissionStatus
-                            val authorizeStatus = uNNotificationSettings.authorizationStatus
-                            val feinnPermissionStatus = when (authorizeStatus) {
-                                UNAuthorizationStatusNotDetermined -> FeinnPermissionStatus.Denied(false)
-                                UNAuthorizationStatusDenied -> FeinnPermissionStatus.Denied(true)
-                                UNAuthorizationStatusAuthorized, UNAuthorizationStatusProvisional, UNAuthorizationStatusEphemeral -> FeinnPermissionStatus.Granted
-                                else -> FeinnPermissionStatus.Denied(false)
-                            }
-
-                            // Resume the coroutine with the mapped permission status
-                            continuation.resumeWith(Result.success(feinnPermissionStatus))
+            UNUserNotificationCenter.currentNotificationCenter()
+                .getNotificationSettingsWithCompletionHandler(
+                    completionHandler = { uNNotificationSettings ->
+                        if (uNNotificationSettings == null) {
+                            // Resume with failure if notification settings are null
+                            continuation.resumeWith(Result.failure(IllegalStateException("Notification settings is null")))
+                            return@getNotificationSettingsWithCompletionHandler
                         }
-                    )
-            }
+
+                        // Map the authorization status to a FeinnPermissionStatus
+                        val authorizeStatus = uNNotificationSettings.authorizationStatus
+                        val feinnPermissionStatus = when (authorizeStatus) {
+                            UNAuthorizationStatusNotDetermined -> FeinnPermissionStatus.Denied(false)
+                            UNAuthorizationStatusDenied -> FeinnPermissionStatus.Denied(true)
+                            UNAuthorizationStatusAuthorized, UNAuthorizationStatusProvisional, UNAuthorizationStatusEphemeral -> FeinnPermissionStatus.Granted
+                            else -> FeinnPermissionStatus.Denied(false)
+                        }
+
+                        // Resume the coroutine with the mapped permission status
+                        continuation.resumeWith(Result.success(feinnPermissionStatus))
+                    }
+                )
+
         }
 }
