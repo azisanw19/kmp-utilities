@@ -6,6 +6,12 @@
 
 - Permission notification
 
+## Feinn Notification
+
+### New Feature
+
+- Current notification supported on iOS and Android
+
 # 1.0.0-alpha05
 
 ## Feinn Permission

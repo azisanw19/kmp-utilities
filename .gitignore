@@ -20,3 +20,6 @@ maven.properties
 *.gpg
 .fleet
 *.xcodeproj
+/core/utilities/camera
+/core/utilities/file
+/iosApp/iosApp/Info.plist
