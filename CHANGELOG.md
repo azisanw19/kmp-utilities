@@ -1,3 +1,6 @@
+# 1.0.0-alpha07
+- Fix deployments failed
+
 # 1.0.0-alpha06
 
 ## Feinn Permission
