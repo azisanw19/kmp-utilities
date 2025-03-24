@@ -6,7 +6,6 @@ import id.feinn.utility.permission.FeinnPermissionType
 import id.feinn.utility.permission.isGranted
 import id.feinn.utility.permission.rememberFeinnPermissionState
 
-// reference: https://developer.apple.com/documentation/usernotifications/unnotificationcontent
 internal abstract class FeinnMutableNotificationState : FeinnNotificationState {
 
     override var data: FeinnNotificationData? = null
@@ -33,4 +32,5 @@ internal abstract class FeinnMutableNotificationState : FeinnNotificationState {
             }
         }
     }
+
 }

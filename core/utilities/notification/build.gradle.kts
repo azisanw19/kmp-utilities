@@ -35,10 +35,15 @@ kotlin {
     }
 
     sourceSets {
+        androidMain.dependencies {
+            implementation(libs.androidx.core)
+            implementation(libs.androidx.activity.compose)
+        }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(projects.core.utilities.permission)
             implementation(projects.core.utilities.time)
+            implementation(projects.core.utilities.context)
         }
     }
 }

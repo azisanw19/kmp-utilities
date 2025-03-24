@@ -1,6 +1,7 @@
 package id.feinn.utility.notification
 
 import androidx.compose.runtime.Composable
+import id.feinn.utility.context.FeinnLocalContext
 
 @Composable
 public expect fun rememberFeinnNotification(
@@ -14,9 +15,10 @@ public interface FeinnNotificationState {
     public var data: FeinnNotificationData?
     public var trigger: FeinnNotificationTrigger
     public var identifier: String?
+    public var androidChannel: FeinnAndroidChannel?
 
     public fun send()
 
 }
 
-public expect fun FeinnNotificationState.Companion.build(block: FeinnNotificationState.() -> Unit) : FeinnNotificationState
+public expect fun FeinnNotificationState.Companion.build(context: FeinnLocalContext, block: FeinnNotificationState.() -> Unit) : FeinnNotificationState
