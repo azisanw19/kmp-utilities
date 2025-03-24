@@ -34,5 +34,6 @@ include(
     ":core:utilities:time",
     ":core:utilities:launcher",
     ":core:utilities:context",
-    ":core:utilities:permission"
+    ":core:utilities:permission",
+    ":core:utilities:notification"
 )

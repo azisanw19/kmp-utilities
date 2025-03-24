@@ -13,6 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import id.feinn.utility.context.FeinnLocalPlatformContext
 import id.feinn.utility.launcher.rememberFeinnLauncer
+import id.feinn.utility.notification.FeinnAndroidChannel
+import id.feinn.utility.notification.FeinnNotificationData
+import id.feinn.utility.notification.rememberFeinnNotification
 import id.feinn.utility.permission.FeinnPermissionStatus
 import id.feinn.utility.permission.FeinnPermissionType
 import id.feinn.utility.permission.rememberFeinnPermissionState
@@ -137,6 +140,32 @@ fun App() {
                 }
             ) {
                 Text("Request Notification Permission")
+            }
+
+            val notification = rememberFeinnNotification(
+                isPermissionGranted = {
+                    println("isPermissionGranted: $it")
+                }
+            )
+
+            Button(
+                onClick = {
+                    notification.apply {
+                        data = FeinnNotificationData(
+                            title = "Feinn Notification title",
+                            body = "Feinn Notification body"
+                        )
+                        identifier = "com.feinn.azisanw19"
+                        androidChannel = FeinnAndroidChannel(
+                            id = "testId",
+                            name = "testName",
+                            description = "testDescription"
+                        )
+                    }
+                    notification.send()
+                }
+            ) {
+                Text("Send Notification")
             }
         }
     }
