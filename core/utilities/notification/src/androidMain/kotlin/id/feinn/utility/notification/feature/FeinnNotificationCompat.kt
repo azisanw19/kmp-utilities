@@ -24,8 +24,8 @@ internal class FeinnNotificationCompat(
     }
 
     private fun sendNotificationNow() {
-        val content = builderContent().build()
         val notificationManager = builderNotificationManager().build()
+        val content = builderContent().build()
 
         notificationManager.notify(0, content)
     }
@@ -33,10 +33,11 @@ internal class FeinnNotificationCompat(
     @Throws(IllegalStateException::class)
     private fun builderContent(): FeinnNotificationContent {
         checkNotNull(identifier) { "identifier cannot be null" }
+        checkNotNull(androidChannel?.id) { "androidChannel cannot be null" }
 
         val notification = feinnNotificationContent(
             context = context,
-            channelId = this@FeinnNotificationCompat.identifier!!,
+            channelId = this@FeinnNotificationCompat.androidChannel!!.id!!,
         ) {
             notificationData = this@FeinnNotificationCompat.data
         }

@@ -20,7 +20,6 @@ internal class FeinnNotificationManager(
         checkNotNull(identifier) { "identifier cannot be null" }
 
         createNotificationChannel()
-        print("createNotificationChannel: ${feinnAndroidChannel!!.id}")
 
         notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -36,25 +35,24 @@ internal class FeinnNotificationManager(
 
     @Throws(IllegalStateException::class)
     private fun createNotificationChannel() {
-        print("createNotificationChannel: ${feinnAndroidChannel!!.id}")
-
         checkNotNull(feinnAndroidChannel) { "Channel cannot be null" }
         checkNotNull(identifier) { "identifier cannot be null" }
 
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(
-            feinnAndroidChannel?.id ?: identifier,
-            feinnAndroidChannel!!.name,
-            importance
-        )
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                feinnAndroidChannel?.id ?: identifier,
+                feinnAndroidChannel!!.name,
+                importance
+            )
 
-        if (feinnAndroidChannel!!.description != null)
-            channel.description = feinnAndroidChannel!!.description
+            if (feinnAndroidChannel!!.description != null)
+                channel.description = feinnAndroidChannel!!.description
 
-        val notificationManager: NotificationManager =
-            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
-        print("createNotificationChannel: ${feinnAndroidChannel!!.id}")
+            val notificationManager: NotificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
 }
@@ -66,7 +64,6 @@ internal fun feinnNotificationManager(
     val manager = FeinnNotificationManager(
         context = context
     )
-    print("createNotificationChannel")
     manager.block()
     return manager.builder()
 }

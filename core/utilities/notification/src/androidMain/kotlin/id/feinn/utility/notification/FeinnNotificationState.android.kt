@@ -1,7 +1,9 @@
 package id.feinn.utility.notification
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalContext
 import id.feinn.utility.context.FeinnLocalContext
 import id.feinn.utility.notification.feature.FeinnNotificationCompat
@@ -11,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 public actual fun rememberFeinnNotification(
     isPermissionGranted: (Boolean) -> Unit
 ): FeinnNotificationState {
-    val context = LocalContext.current
+    val context by rememberUpdatedState(LocalContext.current)
 
     val state = remember {
         FeinnNotificationCompat(
