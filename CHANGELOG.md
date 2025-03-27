@@ -1,3 +1,10 @@
+# 1.0.0-alpha08
+
+## Feinn Notification
+
+### Fix Bugs
+- Notification channel id and notification content id not match
+
 # 1.0.0-alpha07
 - Fix deployments failed
 
