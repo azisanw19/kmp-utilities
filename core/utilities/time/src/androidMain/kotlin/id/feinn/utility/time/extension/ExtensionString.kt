@@ -30,6 +30,16 @@ import java.util.Locale
  *
  * Note: Ensure the input string matches the format exactly; otherwise, a [ParseException] will be thrown.
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 internal fun String.toDate(
     format: String,
     locale: Locale = Locale.getDefault()

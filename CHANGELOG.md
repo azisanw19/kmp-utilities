@@ -1,8 +1,23 @@
+# 1.0.0-alpha09
+
+## Maintenance
+
+- Upgrade dependencies
+
+## Feinn Notification
+
+- 
+
+## Feinn Date Time
+
+- FeinnDateTime library is deprecated and no longer maintained. Migrate to kotlinx-datetime for continued support.
+
 # 1.0.0-alpha08
 
 ## Feinn Notification
 
 ### Fix Bugs
+
 - Notification channel id and notification content id not match
 
 # 1.0.0-alpha07

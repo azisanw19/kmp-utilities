@@ -24,6 +24,16 @@ import platform.Foundation.NSDate
  * println(startOfDay) // Output: NSDate representing 00:00:00 of the current date
  * ```
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 @Throws(FeinnDateTimeThrowable::class)
 internal fun NSDate.toStartDay(): NSDate {
     val calendar = NSCalendar.currentCalendar

@@ -26,6 +26,16 @@ import java.util.Locale
  * println(formattedDate) // e.g., "23 Nov 2024"
  * ```
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 internal fun Date.getFormattedDate(
     format: String,
     locale: Locale
@@ -56,6 +66,16 @@ internal fun Date.getFormattedDate(
  * println(localDateInZone) // e.g., "2024-11-22"
  * ```
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 internal fun Date.toLocalDate(
     zoneId: ZoneId = ZoneId.systemDefault()
 ): LocalDate {
@@ -79,6 +99,16 @@ internal fun Date.toLocalDate(
  * val localDateTime = date.toLocalDateTime()
  * println("LocalDateTime: $localDateTime")
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 internal fun Date.toLocalDateTime(
     zoneId: ZoneId = ZoneId.systemDefault()
 ): LocalDateTime {

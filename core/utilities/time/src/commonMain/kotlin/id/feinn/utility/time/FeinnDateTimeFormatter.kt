@@ -23,6 +23,16 @@ package id.feinn.utility.time
  * println(formattedDateTime) // Output: "2024-11-23T15:45:30"
  * ```
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 public object FeinnDateTimeFormatter {
     /**
      * The ISO 8601 format for a date without time: "yyyy-MM-dd".

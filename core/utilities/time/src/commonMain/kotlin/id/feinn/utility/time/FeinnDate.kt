@@ -18,6 +18,16 @@ package id.feinn.utility.time
  * The companion object is available for static functionality related to [FeinnDate], but the exact behavior
  * will depend on the platform's actual implementation.
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 public expect class FeinnDate {
 
     /**

@@ -33,6 +33,16 @@ package id.feinn.utility.time.exception
  * Note:
  * - This class is specifically intended to be used for date-time related exceptions in the [FeinnDate] system.
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 public class FeinnDateTimeThrowable : Throwable {
 
     /**
