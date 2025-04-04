@@ -1,16 +1,13 @@
 package id.feinn.utilities.example
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import id.feinn.utility.context.FeinnLocalPlatformContext
 import id.feinn.utility.launcher.rememberFeinnLauncer
 import id.feinn.utility.notification.FeinnAndroidChannel
@@ -20,15 +17,8 @@ import id.feinn.utility.permission.FeinnPermissionStatus
 import id.feinn.utility.permission.FeinnPermissionType
 import id.feinn.utility.permission.rememberFeinnPermissionState
 import id.feinn.utility.permission.shouldShowRationale
-import id.feinn.utility.time.FeinnDate
-import id.feinn.utility.time.FeinnDateTime
-import id.feinn.utility.time.getFormattedDateTime
-import id.feinn.utility.time.now
-import id.feinn.utility.time.parse
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun App() {
     MaterialTheme {
         val context = FeinnLocalPlatformContext.current
@@ -36,30 +26,6 @@ fun App() {
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Current date: ${FeinnDate.now()}"
-            )
-            Spacer(
-                modifier = Modifier.height(12.dp)
-            )
-            Text(
-                text = "Current date time: ${FeinnDateTime.now().getFormattedDateTime("dd MMMM yyyy HH:mm:ss")}"
-            )
-            Spacer(
-                modifier = Modifier.height(12.dp)
-            )
-            Text(
-                text = "Parse date: ${FeinnDate.parse("2000-01-19", format = "yyyy-MM-dd")}"
-            )
-            Spacer(
-                modifier = Modifier.height(12.dp)
-            )
-            Text(
-                text = "Date time parse: ${FeinnDateTime.parse("2021-01-01 12:00:00", "yyyy-MM-dd HH:mm:ss")}"
-            )
-            Spacer(
-                modifier = Modifier.height(12.dp)
-            )
             val launcher = rememberFeinnLauncer()
 
             Button(

@@ -8,6 +8,16 @@ import id.feinn.utility.time.exception.FeinnDateTimeThrowable
  * The `FeinnDateTime` class encapsulates a date-time instance and provides methods for creating,
  * formatting, parsing, and converting date-time objects in a platform-agnostic way.
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 public expect class FeinnDateTime {
 
     /**
@@ -43,6 +53,7 @@ public expect fun FeinnDateTime.Companion.now(): FeinnDateTime
  * println(formatted) // Output: "2024-11-24 14:30:00" (example value)
  * ```
  */
+
 public expect fun FeinnDateTime.getFormattedDateTime(
     format: String,
     locale: FeinnLocale = FeinnLocale.getDefault()

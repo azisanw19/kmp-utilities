@@ -18,6 +18,18 @@ dependencies {
 
 ## Usage
 
+### Android Specific
+
+If used in an Android-specific implementation, an instance of `FeinnNotificationAndroid`
+can be utilized to set platform-specific notification properties, such as the notification icon:
+
+```kotlin
+val feinnNotificationAndroid = FeinnNotificationAndroid.getInstance()
+feinnNotificationAndroid.setDrawableId(R.drawable.ic_launcher_foreground)
+```
+
+Usage notification
+
 ```kotlin
 val notification = rememberFeinnNotification(
     isPermissionGranted = {

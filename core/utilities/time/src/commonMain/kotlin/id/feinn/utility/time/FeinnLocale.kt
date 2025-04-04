@@ -16,6 +16,16 @@ package id.feinn.utility.time
  *
  * The companion object provides static methods related to locale functionality for the [FeinnLocale] class.
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 public expect class FeinnLocale {
 
     /**

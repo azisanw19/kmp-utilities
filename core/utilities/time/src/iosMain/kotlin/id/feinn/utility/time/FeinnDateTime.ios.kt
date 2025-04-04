@@ -24,6 +24,16 @@ import platform.Foundation.timeIntervalSince1970
  * println(formattedDateTime) // Output: Formatted date-time string
  * ```
  */
+@Deprecated(
+    message = "FeinnDateTime library is deprecated and no longer maintained. " +
+            "Migrate to kotlinx-datetime for continued support. " +
+            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
+    level = DeprecationLevel.WARNING,
+    replaceWith = ReplaceWith(
+        expression = "kotlinx-datetime",
+        imports = ["kotlinx-datetime"]
+    )
+)
 public actual class FeinnDateTime() {
 
     /**
