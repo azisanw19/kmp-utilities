@@ -6,7 +6,7 @@
 
 ## Feinn Notification
 
-- 
+- Update inline documentation
 
 ## Feinn Date Time
 
