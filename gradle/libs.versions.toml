@@ -1,16 +1,16 @@
 [versions]
-agp = "8.7.2"
+agp = "8.9.1"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
-androidx-activityCompose = "1.9.3"
+androidx-activityCompose = "1.10.1"
 androidx-lifecycle = "2.8.4"
-compose-multiplatform = "1.7.1"
-kotlin = "2.0.21"
+compose-multiplatform = "1.7.3"
+kotlin = "2.1.20"
 jvm = "17"
-vanniktech = "0.29.0"
+vanniktech = "0.31.0"
 androidxCore = "1.15.0"
-androidxActivity = "1.9.3"
+androidxActivity = "1.10.1"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activityCompose" }
