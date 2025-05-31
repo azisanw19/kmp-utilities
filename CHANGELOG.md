@@ -1,3 +1,8 @@
+# 1.0.0-alpha10
+
+## Feinn Byte Buffer
+- Utilities to handle byte buffer like java.nio.ByteBuffer
+
 # 1.0.0-alpha09
 
 ## Maintenance

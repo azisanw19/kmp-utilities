@@ -11,17 +11,10 @@ features across multiple target platforms.
 
 For more information, check the documentation:
 
-- ~~[Date Time Utilities](/docs/FeinnDateTime.md)~~ **(Deprecated)**
+- [Date Time Utilities](/docs/FeinnDateTime.md)
 - [Document uri Launcher Utilities](/docs/FeinnLauncher.md)
 - [Utilities Permission](/docs/FeinnPermission.md)
 - [Platform Context](/docs/FeinnPlatformContext.md)
-
-> ⚠ **Deprecation Notice**
->
-> `Date Time Utilities` is no longer supported and will be removed in a future release.  
-> Please use [`kotlinx-datetime`](https://github.com/Kotlin/kotlinx-datetime) as an alternative.
->
-> **Starting from release `1.0.0-alpha10`, using FeinnDateTime will result in an error.**
 
 ## Example
 
