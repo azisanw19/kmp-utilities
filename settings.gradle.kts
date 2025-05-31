@@ -35,5 +35,6 @@ include(
     ":core:utilities:launcher",
     ":core:utilities:context",
     ":core:utilities:permission",
-    ":core:utilities:notification"
+    ":core:utilities:notification",
+    ":core:utilities:byteBuffer"
 )
