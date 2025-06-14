@@ -23,16 +23,6 @@ import java.util.Date
  *
  * Note: The time component of the resulting [Date] will always be set to midnight (start of the day).
  */
-@Deprecated(
-    message = "FeinnDateTime library is deprecated and no longer maintained. " +
-            "Migrate to kotlinx-datetime for continued support. " +
-            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
-    level = DeprecationLevel.WARNING,
-    replaceWith = ReplaceWith(
-        expression = "kotlinx-datetime",
-        imports = ["kotlinx-datetime"]
-    )
-)
 internal fun LocalDate.toDate() : Date {
     return Date.from(this.atStartOfDay(ZoneId.systemDefault()).toInstant())
 }

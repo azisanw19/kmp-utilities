@@ -18,16 +18,6 @@ import java.util.Date
  * val date = localDateTime.toDate()
  * println("Date: $date")
  */
-@Deprecated(
-    message = "FeinnDateTime library is deprecated and no longer maintained. " +
-            "Migrate to kotlinx-datetime for continued support. " +
-            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
-    level = DeprecationLevel.WARNING,
-    replaceWith = ReplaceWith(
-        expression = "kotlinx-datetime",
-        imports = ["kotlinx-datetime"]
-    )
-)
 internal fun LocalDateTime.toDate() : Date {
     val zonedDateTime = this.atZone(ZoneId.systemDefault())
     return Date.from(zonedDateTime.toInstant())
