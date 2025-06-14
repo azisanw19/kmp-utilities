@@ -620,5 +620,4 @@ public abstract class FeinnByteBuffer : FeinnBuffer<ByteArray>, Comparable<Feinn
      */
     public abstract fun putDouble(index: Int, value: Double): FeinnByteBuffer
 
-
 }

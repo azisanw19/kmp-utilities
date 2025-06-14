@@ -15,6 +15,7 @@ For more information, check the documentation:
 - [Document uri Launcher Utilities](/docs/FeinnLauncher.md)
 - [Utilities Permission](/docs/FeinnPermission.md)
 - [Platform Context](/docs/FeinnPlatformContext.md)
+- [Byte Buffer](/docs/FeinnByteBuffer.md)
 
 ## Example
 

@@ -2,14 +2,7 @@
 ![badge][badge-ios]
 [![badge][badge-feinn-date-time]](https://central.sonatype.com/artifact/id.feinn.azisanw19/feinn-date-time)
 
-# ~~Date Time Utilities~~ **(Deprecated)**
-
-> ⚠ **Deprecation Notice**
->
-> `Date Time Utilities` is no longer supported and will be removed in a future release.  
-> Please use [`kotlinx-datetime`](https://github.com/Kotlin/kotlinx-datetime) as an alternative.
-> 
-> **Starting from release `1.0.0-alpha10`, using FeinnDateTime will result in an error.**
+# Date Time Utilities
 
 First add the dependency to your project:
 
