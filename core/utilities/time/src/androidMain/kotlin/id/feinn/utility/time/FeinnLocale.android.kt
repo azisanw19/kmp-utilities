@@ -33,16 +33,6 @@ import java.util.Locale
  * - The `locale` property must be explicitly set if not using the default locale.
  * - Be cautious when modifying the `locale` property as it affects all operations using this instance.
  */
-@Deprecated(
-    message = "FeinnDateTime library is deprecated and no longer maintained. " +
-            "Migrate to kotlinx-datetime for continued support. " +
-            "Starting from version 1.0.0-alpha10, using FeinnDateTime will result in an error.",
-    level = DeprecationLevel.WARNING,
-    replaceWith = ReplaceWith(
-        expression = "kotlinx-datetime",
-        imports = ["kotlinx-datetime"]
-    )
-)
 public actual class FeinnLocale() {
 
     /**
