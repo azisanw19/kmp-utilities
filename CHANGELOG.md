@@ -1,3 +1,12 @@
+# 1.0.0
+
+## Feinn Byte Buffer
+- Add documentation for FeinnByteBuffer
+- Add function allocate
+
+## Feinn Date Time
+- Delete deprecated annotations
+
 # 1.0.0-alpha10
 
 ## Feinn Byte Buffer
