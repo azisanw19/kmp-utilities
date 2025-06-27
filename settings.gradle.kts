@@ -1,4 +1,4 @@
-rootProject.name = "ExampleKmpUtilities"
+rootProject.name = "KMPUtilities"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -31,11 +31,14 @@ dependencyResolutionManagement {
 include(
     ":composeApp",
     ":iosApp",
+
     ":core:utilities:time",
     ":core:utilities:launcher",
     ":core:utilities:context",
     ":core:utilities:permission",
     ":core:utilities:notification",
     ":core:utilities:byteBuffer",
+    ":core:utilities:crypto",
+
     ":core:components:screenshot"
 )
