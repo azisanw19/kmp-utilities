@@ -1,3 +1,11 @@
+# 1.1.0
+
+## Feinn Cryptographic
+- Add AESCCM for encryption and decryption
+
+## Feinn Screenshot
+- Add screenshot component for Android and iOS BETA
+
 # 1.0.0
 
 ## Feinn Byte Buffer
