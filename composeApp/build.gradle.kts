@@ -47,6 +47,7 @@ kotlin {
             implementation(projects.core.utilities.launcher)
             implementation(projects.core.utilities.permission)
             implementation(projects.core.utilities.notification)
+            implementation(projects.core.components.screenshot)
         }
     }
 }
