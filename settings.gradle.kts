@@ -36,5 +36,6 @@ include(
     ":core:utilities:context",
     ":core:utilities:permission",
     ":core:utilities:notification",
-    ":core:utilities:byteBuffer"
+    ":core:utilities:byteBuffer",
+    ":core:components:screenshot"
 )
