@@ -1,8 +1,6 @@
 package id.feinn.utility.crypto
 
-import kotlin.jvm.Throws
-
-abstract class DefaultMultiBlockCipher protected constructor(): MultiBlockCipher {
+public abstract class DefaultMultiBlockCipher protected constructor(): MultiBlockCipher {
 
     override fun getMultiBlockSize(): Int = this.getBlockSize()
 
