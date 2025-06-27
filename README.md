@@ -16,6 +16,7 @@ For more information, check the documentation:
 - [Utilities Permission](/docs/FeinnPermission.md)
 - [Platform Context](/docs/FeinnPlatformContext.md)
 - [Byte Buffer](/docs/FeinnByteBuffer.md)
+- [Crypto](/docs/FeinnCrypto.md)
 
 ## Example
 
