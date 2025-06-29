@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera permission is required to take pictures.</string>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>Notification permission is required to show notification</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
