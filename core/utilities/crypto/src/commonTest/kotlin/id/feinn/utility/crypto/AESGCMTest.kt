@@ -3,17 +3,17 @@ package id.feinn.utility.crypto
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class AESCCMTest {
+class AESGCMTest {
 
     @Test
-    fun `AESCCM Encrypted Feinn`() {
+    fun `AES GCM Encrypted`() {
         val keyParams = byteArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
         val nonce = byteArrayOf(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28)
         val data = byteArrayOf(37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52)
-        val result = byteArrayOf(105, 107, 53, 30, -2, 44, 47, 30, 72, 63, -104, -73, 114, 94, -109, -22, -11, -73, -49, 54)
+        val result = byteArrayOf(18, 58, -15, 63, 17, -12, -24, 28, -42, 82, 68, 51, -120, 9, 49, 81, 80, 109, 82, 126)
 
         val feinnAESEngine = id.feinn.utility.crypto.engine.AESEngine()
-        val blockCipherFeinn = id.feinn.utility.crypto.modes.CCMBlockCipher(feinnAESEngine)
+        val blockCipherFeinn = id.feinn.utility.crypto.modes.GCMBlockCipher(feinnAESEngine)
         val paramsFeinn = id.feinn.utility.crypto.params.AEADParameters(
             id.feinn.utility.crypto.params.KeyParameter(keyParams),
             32,
@@ -29,20 +29,20 @@ class AESCCMTest {
             0
         )
         blockCipherFeinn.doFinal(encryptedFeinn, encryptedLenFeinn)
-        println("Encrypted AESCCM: ${encryptedFeinn.joinToString()}")
+        println("Encrypted Feinn: ${encryptedFeinn.joinToString()}")
 
-        assertTrue(result.contentEquals(encryptedFeinn))
+        assertTrue(encryptedFeinn.contentEquals(result))
     }
 
     @Test
-    fun `AESCCM decrypted Feinn`() {
+    fun `AES GCM decrypted`() {
         val keyParams = byteArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
         val nonce = byteArrayOf(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28)
         val data = byteArrayOf(37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52)
-        val result = byteArrayOf(105, 107, 53, 30, -2, 44, 47, 30, 72, 63, -104, -73, 114, 94, -109, -22, -11, -73, -49, 54)
+        val result = byteArrayOf(18, 58, -15, 63, 17, -12, -24, 28, -42, 82, 68, 51, -120, 9, 49, 81, 80, 109, 82, 126)
 
         val feinnAESEngine = id.feinn.utility.crypto.engine.AESEngine()
-        val blockCipherFeinn = id.feinn.utility.crypto.modes.CCMBlockCipher(feinnAESEngine)
+        val blockCipherFeinn = id.feinn.utility.crypto.modes.GCMBlockCipher(feinnAESEngine)
         val paramsFeinn = id.feinn.utility.crypto.params.AEADParameters(
             id.feinn.utility.crypto.params.KeyParameter(keyParams),
             32,
