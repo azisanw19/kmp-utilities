@@ -8,9 +8,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 
 @Composable
 public fun FeinnScreenshot(
@@ -18,54 +17,68 @@ public fun FeinnScreenshot(
     screenshotState: FeinnScreenshotState,
     content: @Composable () -> Unit
 ) {
+    val density = LocalDensity.current
+    var coordinateSize by remember { mutableStateOf<CoordinateSize?>(null) }
     val feinnTakeScreenshot = rememberFeinnTakeScreenshot()
-
-    var composableBounds by remember {
-        mutableStateOf<Rect?>(null)
-    }
 
     DisposableEffect(Unit) {
         screenshotState.callback = {
-            composableBounds?.let { bounds ->
-                if (bounds.width == 0f || bounds.height == 0f) return@let
-
-                feinnTakeScreenshot.takeScreenshot(bounds) { imageResult: FeinnScreenshotResult ->
-                    screenshotState.imageState.value = imageResult
-
-                    when (imageResult) {
-                        is FeinnScreenshotResult.Success -> {
-                            screenshotState.imageBitmapState.value = imageResult.bitmap
+            if (coordinateSize != null) {
+                feinnTakeScreenshot.takeScreenshot(
+                    modifier = modifier,
+                    bitmapCallback = {
+                        screenshotState.imageBitmap = when (it) {
+                            is FeinnScreenshotResult.Success -> {
+                                it.bitmap
+                            }
+                            else -> {
+                                error("bitmapCallback is not success")
+                            }
                         }
-
-                        is FeinnScreenshotResult.Error -> {
-                            println(imageResult.throwable.message)
-                            println("Error: ${imageResult.throwable.message}")
-                            screenshotState.imageBitmapState.value = null
-                        }
-
-                        FeinnScreenshotResult.Initial -> {}
-                    }
-                }
+                    },
+                    size = coordinateSize!!,
+                    content = content
+                )
+            } else {
+                error("coordinateSize is null")
             }
         }
+        println("Callback harusnya sampai sini tidak kosong ya")
 
         onDispose {
+            println("Callback dikosongkan")
             screenshotState.callback = null
-            screenshotState.imageBitmapState.value = null
+            screenshotState.imageBitmap = null
         }
     }
 
     Box(modifier = modifier
         .onGloballyPositioned { coordinates ->
-            composableBounds = coordinates.boundsInRoot()
+            val height = with(density) { coordinates.size.height.toDp() }
+            val width = with(density) { coordinates.size.width.toDp() }
+
+            coordinateSize = CoordinateSize(
+                height = height.value.toDouble(),
+                width = width.value.toDouble()
+            )
         }
     ) {
         content()
     }
 }
 
+internal data class CoordinateSize(
+    val width: Double,
+    val height: Double
+)
+
 internal expect class FeinnTakeScreenshot {
-    fun takeScreenshot(bounds: Rect, bitmapCallback: (FeinnScreenshotResult) -> Unit)
+    fun takeScreenshot(
+        modifier: Modifier = Modifier,
+        bitmapCallback: (FeinnScreenshotResult) -> Unit,
+        size: CoordinateSize,
+        content: @Composable () -> Unit
+    )
 }
 
 @Composable
