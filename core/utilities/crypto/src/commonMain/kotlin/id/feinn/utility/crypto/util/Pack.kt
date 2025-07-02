@@ -26,6 +26,14 @@ public object Pack {
         }
     }
 
+    public fun bigEndianToInt(bs: ByteArray, off: Int, ns: IntArray, nsOff: Int, nsLen: Int) {
+        var offT = off
+        for (i in 0 until nsLen) {
+            ns[nsOff + i] = bigEndianToInt(bs, offT)
+            offT += 4
+        }
+    }
+
     public fun intToBigEndian(n: Int): ByteArray {
         val bs: ByteArray = ByteArray(4)
         intToBigEndian(n, bs, 0)
@@ -80,7 +88,7 @@ public object Pack {
     public fun bigEndianToLong(bs: ByteArray, bsOff: Int, ns: LongArray, nsOff: Int, nsLen: Int) {
         var bsOffT = bsOff
         for (i in 0 until nsLen) {
-            ns[nsOff + 1] = bigEndianToLong(bs, bsOffT)
+            ns[nsOff + i] = bigEndianToLong(bs, bsOffT)
             bsOffT += 8
         }
     }

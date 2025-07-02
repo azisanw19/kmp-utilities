@@ -6,7 +6,7 @@ import id.feinn.utility.crypto.security.SecureRandom
 public interface BlockCipherPadding {
 
     @Throws(IllegalArgumentException::class)
-    public fun init(random: SecureRandom)
+    public fun init(random: SecureRandom?)
 
     public fun getPaddingName(): String
 
