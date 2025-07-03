@@ -18,7 +18,7 @@ internal actual class FeinnTakeScreenshot(
     private val context: Context
 ) {
     @Composable
-    public actual fun ScreenshotView(
+    actual fun ScreenshotView(
         modifier: Modifier,
         content: @Composable () -> Unit,
     ): FeinnScreenshotView {
@@ -38,19 +38,18 @@ internal actual class FeinnTakeScreenshot(
     actual fun takeScreenshot(
         bitmapCallback: (FeinnScreenshotResult) -> Unit,
         size: CoordinateSize,
-        screenshotState: FeinnScreenshotView
+        screenView: FeinnScreenshotView
     ) {
-
 
         val widthPx = size.width.toInt()
         val heightPx = size.height.toInt()
         val widthSpec = View.MeasureSpec.makeMeasureSpec(widthPx, View.MeasureSpec.EXACTLY)
         val heightSpec = View.MeasureSpec.makeMeasureSpec(heightPx, View.MeasureSpec.EXACTLY)
 
-        composeView.measure(widthSpec, heightSpec)
-        composeView.layout(0, 0, widthPx, heightPx)
+        screenView.measure(widthSpec, heightSpec)
+        screenView.layout(0, 0, widthPx, heightPx)
 
-        val bitmap: Bitmap = composeView.drawToBitmap()
+        val bitmap: Bitmap = screenView.drawToBitmap()
         val imageBitmap: ImageBitmap = bitmap.asImageBitmap()
 
         bitmapCallback(
