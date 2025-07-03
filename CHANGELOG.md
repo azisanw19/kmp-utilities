@@ -1,3 +1,8 @@
+# 1.1.0-alpha04
+
+## Feinn Screenshot
+- Make public screenshot function to handle screenshot different from screen view
+
 # 1.1.0-alpha03
 
 ## Feinn Screenshot
