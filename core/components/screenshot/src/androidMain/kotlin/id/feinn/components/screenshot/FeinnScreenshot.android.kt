@@ -14,11 +14,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.view.drawToBitmap
 
 
-internal actual class FeinnTakeScreenshot(
+public actual class FeinnTakeScreenshot(
     private val context: Context
 ) {
     @Composable
-    actual fun ScreenshotView(
+    public actual fun ScreenshotView(
         modifier: Modifier,
         content: @Composable () -> Unit,
     ): FeinnScreenshotView {
@@ -35,7 +35,7 @@ internal actual class FeinnTakeScreenshot(
         return composeView
     }
 
-    actual fun takeScreenshot(
+    public actual fun takeScreenshot(
         bitmapCallback: (FeinnScreenshotResult) -> Unit,
         size: CoordinateSize,
         screenView: FeinnScreenshotView
@@ -60,10 +60,10 @@ internal actual class FeinnTakeScreenshot(
 }
 
 @Composable
-internal actual fun rememberFeinnTakeScreenshot(): FeinnTakeScreenshot {
+public actual fun rememberFeinnTakeScreenshot(): FeinnTakeScreenshot {
     val context = LocalContext.current
 
     return remember { FeinnTakeScreenshot(context) }
 }
 
-internal actual typealias FeinnScreenshotView = ComposeView
+public actual typealias FeinnScreenshotView = ComposeView

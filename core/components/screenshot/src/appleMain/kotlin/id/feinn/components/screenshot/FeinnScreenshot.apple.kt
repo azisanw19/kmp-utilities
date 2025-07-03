@@ -13,14 +13,14 @@ import platform.UIKit.UIWindow
 
 
 @Composable
-internal actual fun rememberFeinnTakeScreenshot(): FeinnTakeScreenshot = remember {
+public actual fun rememberFeinnTakeScreenshot(): FeinnTakeScreenshot = remember {
     FeinnTakeScreenshot()
 }
 
-internal actual class FeinnTakeScreenshot {
+public actual class FeinnTakeScreenshot {
 
     @Composable
-    actual fun ScreenshotView(
+    public actual fun ScreenshotView(
         modifier: Modifier,
         content: @Composable () -> Unit
     ): FeinnScreenshotView {
@@ -35,7 +35,7 @@ internal actual class FeinnTakeScreenshot {
     }
 
     @OptIn(ExperimentalForeignApi::class)
-    actual fun takeScreenshot(
+    public actual fun takeScreenshot(
         bitmapCallback: (FeinnScreenshotResult) -> Unit,
         size: CoordinateSize,
         screenView: FeinnScreenshotView
@@ -58,4 +58,4 @@ internal actual class FeinnTakeScreenshot {
     }
 }
 
-internal actual typealias FeinnScreenshotView = UIViewController
+public actual typealias FeinnScreenshotView = UIViewController

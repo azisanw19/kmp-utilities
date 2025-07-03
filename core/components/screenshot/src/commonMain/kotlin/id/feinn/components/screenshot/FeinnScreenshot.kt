@@ -25,7 +25,6 @@ public fun FeinnScreenshot(
         content = content
     )
 
-
     DisposableEffect(Unit) {
         screenshotState.callback = {
             if (coordinateSize != null) {
@@ -70,20 +69,20 @@ public fun FeinnScreenshot(
     }
 }
 
-internal data class CoordinateSize(
+public data class CoordinateSize(
     val width: Double,
     val height: Double
 )
 
-internal expect class FeinnTakeScreenshot {
+public expect class FeinnTakeScreenshot {
 
     @Composable
-    fun ScreenshotView(
+    public fun ScreenshotView(
         modifier: Modifier = Modifier,
         content: @Composable () -> Unit
     ): FeinnScreenshotView
 
-    fun takeScreenshot(
+    public fun takeScreenshot(
         bitmapCallback: (FeinnScreenshotResult) -> Unit,
         size: CoordinateSize,
         screenView: FeinnScreenshotView
@@ -92,6 +91,6 @@ internal expect class FeinnTakeScreenshot {
 }
 
 @Composable
-internal expect fun rememberFeinnTakeScreenshot() : FeinnTakeScreenshot
+public expect fun rememberFeinnTakeScreenshot() : FeinnTakeScreenshot
 
-internal expect class FeinnScreenshotView
+public expect class FeinnScreenshotView

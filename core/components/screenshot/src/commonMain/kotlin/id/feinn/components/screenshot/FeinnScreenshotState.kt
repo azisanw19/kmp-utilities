@@ -9,11 +9,6 @@ public sealed class FeinnScreenshotResult {
     public data class Error internal constructor(val throwable: Throwable): FeinnScreenshotResult()
 }
 
-public data class ScreenshotOptions(
-    val width: Int? = null,
-    val height: Int? = null
-)
-
 @Composable
 public fun rememberFeinnScreenshotState(): FeinnScreenshotState = remember {
     FeinnScreenshotState()
