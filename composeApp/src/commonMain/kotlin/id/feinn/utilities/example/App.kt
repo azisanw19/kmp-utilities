@@ -1,5 +1,6 @@
 package id.feinn.utilities.example
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,7 +10,9 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -27,6 +30,7 @@ import id.feinn.utility.permission.FeinnPermissionStatus
 import id.feinn.utility.permission.FeinnPermissionType
 import id.feinn.utility.permission.rememberFeinnPermissionState
 import id.feinn.utility.permission.shouldShowRationale
+import kotlinx.coroutines.delay
 
 @Composable
 fun App() {
@@ -168,12 +172,23 @@ fun App() {
                 )
             }
 
+            val visibleItems = remember { mutableStateListOf<Int>() }
+
+            LaunchedEffect(Unit) {
+                repeat(100) { index ->
+                    delay(100) // Delay antara item muncul (misalnya 10ms)
+                    visibleItems.add(index)
+                }
+            }
+
             FeinnScreenshot(
                 screenshotState = screenshotState
             ) {
                 Column {
                     repeat(100) { index ->
-                        Text(text = "Item ke-$index")
+                        AnimatedVisibility(visible = visibleItems.contains(index)) {
+                            Text(text = "Item ke-$index")
+                        }
                     }
                 }
             }

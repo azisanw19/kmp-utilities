@@ -17,12 +17,11 @@ import androidx.core.view.drawToBitmap
 internal actual class FeinnTakeScreenshot(
     private val context: Context
 ) {
-    actual fun takeScreenshot(
+    @Composable
+    public actual fun ScreenshotView(
         modifier: Modifier,
-        bitmapCallback: (FeinnScreenshotResult) -> Unit,
-        size: CoordinateSize,
         content: @Composable () -> Unit,
-    ) {
+    ): FeinnScreenshotView {
         val composeView = ComposeView(context).apply {
             setContent {
                 Box(
@@ -32,6 +31,16 @@ internal actual class FeinnTakeScreenshot(
                 }
             }
         }
+
+        return composeView
+    }
+
+    actual fun takeScreenshot(
+        bitmapCallback: (FeinnScreenshotResult) -> Unit,
+        size: CoordinateSize,
+        screenshotState: FeinnScreenshotView
+    ) {
+
 
         val widthPx = size.width.toInt()
         val heightPx = size.height.toInt()
@@ -48,6 +57,7 @@ internal actual class FeinnTakeScreenshot(
             FeinnScreenshotResult.Success(imageBitmap)
         )
     }
+
 }
 
 @Composable
@@ -56,3 +66,5 @@ internal actual fun rememberFeinnTakeScreenshot(): FeinnTakeScreenshot {
 
     return remember { FeinnTakeScreenshot(context) }
 }
+
+internal actual typealias FeinnScreenshotView = ComposeView

@@ -20,12 +20,16 @@ public fun FeinnScreenshot(
     val density = LocalDensity.current
     var coordinateSize by remember { mutableStateOf<CoordinateSize?>(null) }
     val feinnTakeScreenshot = rememberFeinnTakeScreenshot()
+    val screenView = feinnTakeScreenshot.ScreenshotView(
+        modifier = modifier,
+        content = content
+    )
+
 
     DisposableEffect(Unit) {
         screenshotState.callback = {
             if (coordinateSize != null) {
                 feinnTakeScreenshot.takeScreenshot(
-                    modifier = modifier,
                     bitmapCallback = {
                         screenshotState.imageBitmap = when (it) {
                             is FeinnScreenshotResult.Success -> {
@@ -37,13 +41,12 @@ public fun FeinnScreenshot(
                         }
                     },
                     size = coordinateSize!!,
-                    content = content
+                    screenView = screenView
                 )
             } else {
                 error("coordinateSize is null")
             }
         }
-        println("Callback harusnya sampai sini tidak kosong ya")
 
         onDispose {
             println("Callback dikosongkan")
@@ -73,13 +76,22 @@ internal data class CoordinateSize(
 )
 
 internal expect class FeinnTakeScreenshot {
-    fun takeScreenshot(
+
+    @Composable
+    fun ScreenshotView(
         modifier: Modifier = Modifier,
+        content: @Composable () -> Unit
+    ): FeinnScreenshotView
+
+    fun takeScreenshot(
         bitmapCallback: (FeinnScreenshotResult) -> Unit,
         size: CoordinateSize,
-        content: @Composable () -> Unit
+        screenView: FeinnScreenshotView
     )
+
 }
 
 @Composable
 internal expect fun rememberFeinnTakeScreenshot() : FeinnTakeScreenshot
+
+internal expect class FeinnScreenshotView
