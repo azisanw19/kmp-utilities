@@ -1,3 +1,8 @@
+# 1.1.0-alpha02
+
+## Feinn Screenshot
+- Fix screenshot view render time
+
 # 1.1.0-alpha01
 
 ## Feinn Screenshot
