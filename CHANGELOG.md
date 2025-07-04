@@ -1,3 +1,8 @@
+# 1.1.0-alpha05
+
+## Feinn Screenshot
+- Make public screenshot function callback set
+
 # 1.1.0-alpha04
 
 ## Feinn Screenshot
