@@ -48,7 +48,6 @@ public fun FeinnScreenshot(
         }
 
         onDispose {
-            println("Callback dikosongkan")
             screenshotState.callback = null
             screenshotState.imageBitmap = null
         }

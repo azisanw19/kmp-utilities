@@ -15,7 +15,7 @@ public fun rememberFeinnScreenshotState(): FeinnScreenshotState = remember {
 }
 
 public class FeinnScreenshotState internal constructor() {
-    internal var callback: (() -> Unit)? = null
+    public var callback: (() -> Unit)? = null
 
     public fun capture() {
         callback?.invoke()
