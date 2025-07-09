@@ -1,3 +1,14 @@
+# 1.1.1
+
+## Feinn Screenshot
+- Stable screenshot
+
+## Feinn Cryptographic
+- AES GCM
+- AES CTR
+- AES CBC
+- Digests SHA1
+
 # 1.1.0-alpha05
 
 ## Feinn Screenshot
