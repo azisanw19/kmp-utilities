@@ -32,7 +32,11 @@ public actual class FeinnLauncher {
     public actual fun launch(uri: String) {
         val paths = uri.split(":")
         if (paths.firstOrNull() == "https" || paths.firstOrNull() == "http") {
-            UIApplication.sharedApplication.openURL(NSURL(string = uri))
+            UIApplication.sharedApplication.openURL(
+                url = NSURL(string = uri),
+                options = emptyMap<Any?, Any>(),
+                completionHandler = null
+            )
             return
         }
 
