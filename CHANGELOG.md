@@ -1,3 +1,13 @@
+# 1.1.2
+
+## Feinn Launcher
+- Fix depracated url open launch
+
+## Feinn Cryptographic
+- Add HMAC
+- Fix SHA1 Digests
+- Add unit test SHA1 HMAC
+
 # 1.1.1
 
 ## Feinn Screenshot
