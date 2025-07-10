@@ -105,7 +105,7 @@ public class SHA1Digest : GeneralDigest, EncodableDigest {
         H4 = 0x10325476.toInt()
         H5 = 0xc3d2e1f0.toInt()
 
-        xOff - 0
+        xOff = 0
         var i = 0
         while (i != X.size) {
             X[i] = 0
@@ -122,7 +122,7 @@ public class SHA1Digest : GeneralDigest, EncodableDigest {
     override fun processBlock() {
         for (i in 16 until 80) {
             val t = X[i - 3] xor X[i - 8] xor X[i - 14] xor X[i - 16]
-            X[i] = t shl 1 or t ushr 31
+            X[i] = t shl 1 or (t ushr 31)
         }
 
         var A = H1
@@ -134,20 +134,20 @@ public class SHA1Digest : GeneralDigest, EncodableDigest {
         var idx = 0
 
         for (j in 0 until 4) {
-            E += ((A shl 5 or A ushr 27) + f(B, C, D) + X[idx++] + Y1)
-            B = B shl 30 or B ushr 2
+            E += (A shl 5 or (A ushr 27)) + f(B, C, D) + X[idx++] + Y1
+            B = B shl 30 or (B ushr 2)
 
-            D += ((E shl 5 or E ushr 27) + f(A, B, C) + X[idx++] + Y1)
-            A = A shl 30 or A ushr 2
+            D += (E shl 5 or (E ushr 27)) + f(A, B, C) + X[idx++] + Y1
+            A = A shl 30 or (A ushr 2)
 
-            C += ((D shl 5 or D ushr 27) + f(E, A, B) + X[idx++] + Y1)
-            E = E shl 30 or E ushr 2
+            C += (D shl 5 or (D ushr 27)) + f(E, A, B) + X[idx++] + Y1
+            E = E shl 30 or (E ushr 2)
 
-            B += ((C shl 5 or C ushr 27) + f(D, E, A) + X[idx++] + Y1)
-            D = D shl 30 or D ushr 2
+            B += (C shl 5 or (C ushr 27)) + f(D, E, A) + X[idx++] + Y1
+            D = D shl 30 or (D ushr 2)
 
-            A += ((B shl 5 or B ushr 27) + f(C, D, E) + X[idx++] + Y1)
-            C = C shl 30 or C ushr 2
+            A += (B shl 5 or (B ushr 27)) + f(C, D, E) + X[idx++] + Y1
+            C = C shl 30 or (C ushr 2)
         }
 
         for (j in 0 until 4) {
