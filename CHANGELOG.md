@@ -1,3 +1,16 @@
+# 1.2.0
+
+## Feinn Connection Monitor
+- watch internet connection as observable (currently only Android)
+- watch speeded internet connection (currently only Android)
+- watch active connection network as observable (currently only Android)
+
+## Feinn Cryptographic
+- Extension ByteArray toHex
+- Extension String toByteArray
+- Support SHA256
+- SecureRandom nextBytes function (not cryptographically secure)
+
 # 1.1.2
 
 ## Feinn Launcher
