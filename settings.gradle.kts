@@ -39,6 +39,7 @@ include(
     ":core:utilities:notification",
     ":core:utilities:byteBuffer",
     ":core:utilities:crypto",
+    ":core:utilities:connectionMonitor",
 
     ":core:components:screenshot"
 )
