@@ -2,7 +2,7 @@
 
 ## Feinn Connection Monitor
 - watch internet connection as observable (currently only Android)
-- watch speeded internet connection (currently only Android)
+- watch speed internet connection (currently only Android)
 - watch active connection network as observable (currently only Android)
 
 ## Feinn Cryptographic
